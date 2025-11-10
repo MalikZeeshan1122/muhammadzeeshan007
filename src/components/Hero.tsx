@@ -84,10 +84,10 @@ const Hero = () => {
           )}
         </div>
         
-        {/* Summary with fade-in animation */}
+        {/* Summary with revealing text animation */}
         {hero.summary && (
-          <div className="pt-6 animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}>
-            <p className="text-foreground leading-relaxed text-lg max-w-2xl mx-auto hover:text-foreground/80 transition-colors duration-300">
+          <div className="pt-6 animate-fade-in overflow-hidden" style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}>
+            <p className="text-foreground leading-relaxed text-lg max-w-2xl mx-auto relative bg-gradient-to-r from-foreground via-foreground to-foreground bg-clip-text animate-text-reveal bg-no-repeat" style={{ backgroundImage: 'linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 50%, hsl(var(--foreground)) 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
               {hero.summary}
             </p>
           </div>
