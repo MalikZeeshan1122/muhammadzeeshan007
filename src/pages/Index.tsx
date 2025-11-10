@@ -38,15 +38,6 @@ const Index = () => {
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <FeaturedTalks />
-        <Teaching />
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <FeaturedWriting />
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
         <div id="projects">
           <PetProjects />
         </div>
@@ -78,6 +69,18 @@ const Index = () => {
         <div id="contact">
           <MiscLinks />
         </div>
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <FeaturedTalks />
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <Teaching />
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <FeaturedWriting />
         
         <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
           <hr className="mb-8 border-border" />
