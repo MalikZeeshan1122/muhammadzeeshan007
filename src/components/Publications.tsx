@@ -18,7 +18,7 @@ const Publications = () => {
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
       <div className="flex items-center gap-2 mb-8">
-        <h2 className="text-3xl font-bold text-foreground">publications</h2>
+        <h2 className="text-3xl font-bold text-foreground">Publications</h2>
         <EditButton onClick={() => setEditOpen(true)} />
       </div>
       <div className="space-y-4">
