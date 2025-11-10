@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MessageCircle, Twitter, Linkedin, Facebook, Instagram, Github, Newspaper } from "lucide-react";
+import { Mail, Phone, MessageCircle, Twitter, Linkedin, Facebook, Instagram, Github, Newspaper, Link as LinkIcon, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +9,7 @@ import { useEditMode } from "@/contexts/EditModeContext";
 import EditButton from "@/components/EditButton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { z } from "zod";
 
 const contactFormSchema = z.object({
@@ -31,6 +32,9 @@ const Contact = () => {
     facebook: profileData?.hero?.facebook || "",
     instagram: profileData?.hero?.instagram || "",
   });
+  const [customSocialLinks, setCustomSocialLinks] = useState<Array<{label: string, url: string, icon?: string}>>(
+    profileData?.hero?.customSocialLinks || []
+  );
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,7 +58,8 @@ const Contact = () => {
       ...profileData,
       hero: {
         ...profileData.hero,
-        ...socialData
+        ...socialData,
+        customSocialLinks
       }
     });
     setEditSocialOpen(false);
@@ -62,6 +67,20 @@ const Contact = () => {
       title: "Social links updated",
       description: "Your social media links have been saved successfully",
     });
+  };
+
+  const addCustomSocialLink = () => {
+    setCustomSocialLinks([...customSocialLinks, { label: "", url: "", icon: "Link" }]);
+  };
+
+  const removeCustomSocialLink = (index: number) => {
+    setCustomSocialLinks(customSocialLinks.filter((_, i) => i !== index));
+  };
+
+  const updateCustomSocialLink = (index: number, field: 'label' | 'url', value: string) => {
+    const updated = [...customSocialLinks];
+    updated[index][field] = value;
+    setCustomSocialLinks(updated);
   };
 
   // Using web.whatsapp.com to avoid API blocking
@@ -246,6 +265,7 @@ const Contact = () => {
                 facebook: profileData?.hero?.facebook || "",
                 instagram: profileData?.hero?.instagram || "",
               });
+              setCustomSocialLinks(profileData?.hero?.customSocialLinks || []);
               setEditSocialOpen(true);
             }} />
           </div>
@@ -342,6 +362,23 @@ const Contact = () => {
                 <span className="text-sm">GitHub</span>
               </a>
             )}
+
+            {/* Custom Social Links */}
+            {profileData?.hero?.customSocialLinks?.map((link: any, index: number) => (
+              link.label && link.url && (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                  title={link.label}
+                >
+                  <LinkIcon className="w-5 h-5" />
+                  <span className="text-sm">{link.label}</span>
+                </a>
+              )
+            ))}
           </div>
 
           {/* Newsletter Subscription */}
@@ -376,75 +413,130 @@ const Contact = () => {
 
       {/* Edit Social Links Dialog */}
       <Dialog open={editSocialOpen} onOpenChange={setEditSocialOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Edit Social Media Links</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="edit-email">Email</Label>
-              <Input
-                id="edit-email"
-                value={socialData.email}
-                onChange={(e) => setSocialData({ ...socialData, email: e.target.value })}
-                placeholder="your.email@example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-twitter">Twitter URL</Label>
-              <Input
-                id="edit-twitter"
-                value={socialData.twitter}
-                onChange={(e) => setSocialData({ ...socialData, twitter: e.target.value })}
-                placeholder="https://twitter.com/yourhandle"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-linkedin">LinkedIn URL</Label>
-              <Input
-                id="edit-linkedin"
-                value={socialData.linkedin}
-                onChange={(e) => setSocialData({ ...socialData, linkedin: e.target.value })}
-                placeholder="https://linkedin.com/in/yourprofile"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-github">GitHub URL</Label>
-              <Input
-                id="edit-github"
-                value={socialData.github}
-                onChange={(e) => setSocialData({ ...socialData, github: e.target.value })}
-                placeholder="https://github.com/yourusername"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-substack">Substack URL</Label>
-              <Input
-                id="edit-substack"
-                value={socialData.substack}
-                onChange={(e) => setSocialData({ ...socialData, substack: e.target.value })}
-                placeholder="https://yourname.substack.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-facebook">Facebook URL</Label>
-              <Input
-                id="edit-facebook"
-                value={socialData.facebook}
-                onChange={(e) => setSocialData({ ...socialData, facebook: e.target.value })}
-                placeholder="https://facebook.com/yourprofile"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="edit-instagram">Instagram URL</Label>
-              <Input
-                id="edit-instagram"
-                value={socialData.instagram}
-                onChange={(e) => setSocialData({ ...socialData, instagram: e.target.value })}
-                placeholder="https://instagram.com/yourhandle"
-              />
-            </div>
-          </div>
+          
+          <Tabs defaultValue="standard" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="standard">Standard Links</TabsTrigger>
+              <TabsTrigger value="custom">Custom Links</TabsTrigger>
+            </TabsList>
+
+            {/* Standard Social Links Tab */}
+            <TabsContent value="standard" className="space-y-4 py-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="edit-email">Email</Label>
+                  <Input
+                    id="edit-email"
+                    value={socialData.email}
+                    onChange={(e) => setSocialData({ ...socialData, email: e.target.value })}
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-twitter">Twitter URL</Label>
+                  <Input
+                    id="edit-twitter"
+                    value={socialData.twitter}
+                    onChange={(e) => setSocialData({ ...socialData, twitter: e.target.value })}
+                    placeholder="https://twitter.com/yourhandle"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-linkedin">LinkedIn URL</Label>
+                  <Input
+                    id="edit-linkedin"
+                    value={socialData.linkedin}
+                    onChange={(e) => setSocialData({ ...socialData, linkedin: e.target.value })}
+                    placeholder="https://linkedin.com/in/yourprofile"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-github">GitHub URL</Label>
+                  <Input
+                    id="edit-github"
+                    value={socialData.github}
+                    onChange={(e) => setSocialData({ ...socialData, github: e.target.value })}
+                    placeholder="https://github.com/yourusername"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-substack">Substack URL</Label>
+                  <Input
+                    id="edit-substack"
+                    value={socialData.substack}
+                    onChange={(e) => setSocialData({ ...socialData, substack: e.target.value })}
+                    placeholder="https://yourname.substack.com"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-facebook">Facebook URL</Label>
+                  <Input
+                    id="edit-facebook"
+                    value={socialData.facebook}
+                    onChange={(e) => setSocialData({ ...socialData, facebook: e.target.value })}
+                    placeholder="https://facebook.com/yourprofile"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-instagram">Instagram URL</Label>
+                  <Input
+                    id="edit-instagram"
+                    value={socialData.instagram}
+                    onChange={(e) => setSocialData({ ...socialData, instagram: e.target.value })}
+                    placeholder="https://instagram.com/yourhandle"
+                  />
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Custom Social Links Tab */}
+            <TabsContent value="custom" className="space-y-4 py-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold">Custom Social Links</h3>
+                <Button onClick={addCustomSocialLink} size="sm">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Link
+                </Button>
+              </div>
+              <div className="space-y-3">
+                {customSocialLinks.map((link, index) => (
+                  <Card key={index} className="p-4">
+                    <div className="flex gap-3 items-start">
+                      <div className="flex-1 space-y-3">
+                        <Input
+                          placeholder="Link Label (e.g., Telegram, WhatsApp)"
+                          value={link.label}
+                          onChange={(e) => updateCustomSocialLink(index, 'label', e.target.value)}
+                        />
+                        <Input
+                          placeholder="URL"
+                          value={link.url}
+                          onChange={(e) => updateCustomSocialLink(index, 'url', e.target.value)}
+                        />
+                      </div>
+                      <Button
+                        variant="destructive"
+                        size="icon"
+                        onClick={() => removeCustomSocialLink(index)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+                {customSocialLinks.length === 0 && (
+                  <p className="text-muted-foreground text-center py-8">
+                    No custom social links yet. Click "Add Link" to create one.
+                  </p>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setEditSocialOpen(false)}>Cancel</Button>
             <Button onClick={handleSaveSocial}>Save & Close</Button>
