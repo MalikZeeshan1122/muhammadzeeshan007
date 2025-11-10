@@ -116,6 +116,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -125,5 +126,28 @@ All colors MUST be HSL.
   
   a {
     @apply transition-colors duration-200;
+  }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
   }
 }

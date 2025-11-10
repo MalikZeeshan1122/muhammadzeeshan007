@@ -9,65 +9,71 @@ import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import EditModeToggle from "@/components/EditModeToggle";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
+import SectionWrapper from "@/components/SectionWrapper";
 import { Separator } from "@/components/ui/separator";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <Navigation />
       
       <div className="pt-16">
-        <div id="about">
+        <SectionWrapper id="about">
           <Hero />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="skills">
+        <SectionWrapper id="skills">
           <Skills />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="experience">
+        <SectionWrapper id="experience">
           <Experience />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="hackathons">
+        <SectionWrapper id="hackathons">
           <Hackathons />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="projects">
+        <SectionWrapper id="projects">
           <PetProjects />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="certifications">
+        <SectionWrapper id="certifications">
           <Certifications />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <Education />
+        <SectionWrapper>
+          <Education />
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="papers">
+        <SectionWrapper id="papers">
           <Publications />
-        </div>
+        </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
-        <div id="contact">
+        <SectionWrapper id="contact">
           <Contact />
-        </div>
+        </SectionWrapper>
         
-        <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
+        <footer className="max-w-3xl mx-auto px-6 py-12 mt-12 animate-fade-in">
           <hr className="mb-8 border-border" />
           <p className="text-center text-muted-foreground text-sm">
             © {new Date().getFullYear()} Muhammad Zeeshan. All rights reserved.
@@ -75,6 +81,7 @@ const Index = () => {
         </footer>
       </div>
 
+      <BackToTop />
       <EditModeToggle />
     </div>
   );
