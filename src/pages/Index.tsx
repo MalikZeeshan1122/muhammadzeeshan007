@@ -2,15 +2,11 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
 import Hackathons from "@/components/Hackathons";
-import FeaturedTalks from "@/components/FeaturedTalks";
-import Teaching from "@/components/Teaching";
-import FeaturedWriting from "@/components/FeaturedWriting";
 import PetProjects from "@/components/PetProjects";
 import Publications from "@/components/Publications";
 import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
-import MiscLinks from "@/components/MiscLinks";
 import Contact from "@/components/Contact";
 import EditModeToggle from "@/components/EditModeToggle";
 import { Separator } from "@/components/ui/separator";
@@ -70,22 +66,6 @@ const Index = () => {
         <div id="contact">
           <Contact />
         </div>
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <MiscLinks />
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <FeaturedTalks />
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <Teaching />
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <FeaturedWriting />
         
         <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
           <hr className="mb-8 border-border" />
