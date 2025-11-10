@@ -5,6 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useEditMode } from "@/contexts/EditModeContext";
+import EditButton from "@/components/EditButton";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { z } from "zod";
 
 const contactFormSchema = z.object({
@@ -16,6 +20,17 @@ const contactFormSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
+  const { profileData, updateProfileData } = useEditMode();
+  const [editSocialOpen, setEditSocialOpen] = useState(false);
+  const [socialData, setSocialData] = useState({
+    email: profileData?.hero?.email || "",
+    twitter: profileData?.hero?.twitter || "",
+    linkedin: profileData?.hero?.linkedin || "",
+    github: profileData?.hero?.github || "",
+    substack: profileData?.hero?.substack || "",
+    facebook: profileData?.hero?.facebook || "",
+    instagram: profileData?.hero?.instagram || "",
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,6 +47,21 @@ const Contact = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
+  };
+
+  const handleSaveSocial = () => {
+    updateProfileData({
+      ...profileData,
+      hero: {
+        ...profileData.hero,
+        ...socialData
+      }
+    });
+    setEditSocialOpen(false);
+    toast({
+      title: "Social links updated",
+      description: "Your social media links have been saved successfully",
+    });
   };
 
   // Using web.whatsapp.com to avoid API blocking
@@ -204,86 +234,114 @@ const Contact = () => {
 
         {/* Social Links & Newsletter */}
         <Card className="p-6 bg-accent/5">
-          <h3 className="text-xl font-semibold text-foreground mb-4 text-center">Connect With Me</h3>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <h3 className="text-xl font-semibold text-foreground text-center">Connect With Me</h3>
+            <EditButton onClick={() => {
+              setSocialData({
+                email: profileData?.hero?.email || "",
+                twitter: profileData?.hero?.twitter || "",
+                linkedin: profileData?.hero?.linkedin || "",
+                github: profileData?.hero?.github || "",
+                substack: profileData?.hero?.substack || "",
+                facebook: profileData?.hero?.facebook || "",
+                instagram: profileData?.hero?.instagram || "",
+              });
+              setEditSocialOpen(true);
+            }} />
+          </div>
           
           {/* Social Media Links */}
           <div className="flex flex-wrap gap-4 items-center justify-center mb-6">
-            <a
-              href="https://mail.google.com/mail/?view=cm&to=malikzeeshan3.1417@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="Gmail"
-            >
-              <Mail className="w-5 h-5" />
-              <span className="text-sm">Gmail</span>
-            </a>
+            {profileData?.hero?.email && (
+              <a
+                href={`https://mail.google.com/mail/?view=cm&to=${profileData.hero.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="Gmail"
+              >
+                <Mail className="w-5 h-5" />
+                <span className="text-sm">Gmail</span>
+              </a>
+            )}
 
-            <a
-              href="https://x.com/MalikZeesh7398"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="Twitter"
-            >
-              <Twitter className="w-5 h-5" />
-              <span className="text-sm">Twitter</span>
-            </a>
+            {profileData?.hero?.twitter && (
+              <a
+                href={profileData.hero.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="Twitter"
+              >
+                <Twitter className="w-5 h-5" />
+                <span className="text-sm">Twitter</span>
+              </a>
+            )}
 
-            <a
-              href="https://www.linkedin.com/in/muhammadzeeshan007/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="text-sm">LinkedIn</span>
-            </a>
+            {profileData?.hero?.linkedin && (
+              <a
+                href={profileData.hero.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
+            )}
 
-            <a
-              href="https://substack.com/@malikzeeshan007"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="Substack"
-            >
-              <Newspaper className="w-5 h-5" />
-              <span className="text-sm">Substack</span>
-            </a>
+            {profileData?.hero?.substack && (
+              <a
+                href={profileData.hero.substack}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="Substack"
+              >
+                <Newspaper className="w-5 h-5" />
+                <span className="text-sm">Substack</span>
+              </a>
+            )}
 
-            <a
-              href="https://www.facebook.com/profile.php?id=100090496194556"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-              <span className="text-sm">Facebook</span>
-            </a>
+            {profileData?.hero?.facebook && (
+              <a
+                href={profileData.hero.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+                <span className="text-sm">Facebook</span>
+              </a>
+            )}
 
-            <a
-              href="https://www.instagram.com/malikzeeshan3.1417/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-              <span className="text-sm">Instagram</span>
-            </a>
+            {profileData?.hero?.instagram && (
+              <a
+                href={profileData.hero.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+                <span className="text-sm">Instagram</span>
+              </a>
+            )}
 
-            <a
-              href="https://github.com/MalikZeeshan1122"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-              title="GitHub"
-            >
-              <Github className="w-5 h-5" />
-              <span className="text-sm">GitHub</span>
-            </a>
+            {profileData?.hero?.github && (
+              <a
+                href={profileData.hero.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+                title="GitHub"
+              >
+                <Github className="w-5 h-5" />
+                <span className="text-sm">GitHub</span>
+              </a>
+            )}
           </div>
 
           {/* Newsletter Subscription */}
@@ -291,7 +349,7 @@ const Contact = () => {
             <h4 className="text-lg font-medium text-foreground text-center">Subscribe to Newsletter</h4>
             
             <form
-              action="https://malikzeeshan007.substack.com/subscribe"
+              action={`${profileData?.hero?.substack || 'https://substack.com/@malikzeeshan007'}/subscribe`}
               method="post"
               target="_blank"
               className="flex flex-col sm:flex-row gap-2"
@@ -315,6 +373,84 @@ const Contact = () => {
           </div>
         </Card>
       </div>
+
+      {/* Edit Social Links Dialog */}
+      <Dialog open={editSocialOpen} onOpenChange={setEditSocialOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Social Media Links</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="edit-email">Email</Label>
+              <Input
+                id="edit-email"
+                value={socialData.email}
+                onChange={(e) => setSocialData({ ...socialData, email: e.target.value })}
+                placeholder="your.email@example.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-twitter">Twitter URL</Label>
+              <Input
+                id="edit-twitter"
+                value={socialData.twitter}
+                onChange={(e) => setSocialData({ ...socialData, twitter: e.target.value })}
+                placeholder="https://twitter.com/yourhandle"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-linkedin">LinkedIn URL</Label>
+              <Input
+                id="edit-linkedin"
+                value={socialData.linkedin}
+                onChange={(e) => setSocialData({ ...socialData, linkedin: e.target.value })}
+                placeholder="https://linkedin.com/in/yourprofile"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-github">GitHub URL</Label>
+              <Input
+                id="edit-github"
+                value={socialData.github}
+                onChange={(e) => setSocialData({ ...socialData, github: e.target.value })}
+                placeholder="https://github.com/yourusername"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-substack">Substack URL</Label>
+              <Input
+                id="edit-substack"
+                value={socialData.substack}
+                onChange={(e) => setSocialData({ ...socialData, substack: e.target.value })}
+                placeholder="https://yourname.substack.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-facebook">Facebook URL</Label>
+              <Input
+                id="edit-facebook"
+                value={socialData.facebook}
+                onChange={(e) => setSocialData({ ...socialData, facebook: e.target.value })}
+                placeholder="https://facebook.com/yourprofile"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-instagram">Instagram URL</Label>
+              <Input
+                id="edit-instagram"
+                value={socialData.instagram}
+                onChange={(e) => setSocialData({ ...socialData, instagram: e.target.value })}
+                placeholder="https://instagram.com/yourhandle"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditSocialOpen(false)}>Cancel</Button>
+            <Button onClick={handleSaveSocial}>Save & Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
