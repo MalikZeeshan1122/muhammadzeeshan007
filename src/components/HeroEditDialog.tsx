@@ -39,11 +39,29 @@ const HeroEditDialog = ({ open, onOpenChange }: HeroEditDialogProps) => {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="tagline">Tagline</Label>
+            <Input
+              id="tagline"
+              value={formData.tagline}
+              onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+              placeholder="e.g., I like to train deep neural nets..."
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="location">Location</Label>
             <Input
               id="location"
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="profilePhoto">Profile Photo URL</Label>
+            <Input
+              id="profilePhoto"
+              value={formData.profilePhoto}
+              onChange={(e) => setFormData({ ...formData, profilePhoto: e.target.value })}
+              placeholder="https://..."
             />
           </div>
           <div className="space-y-2">
@@ -61,6 +79,30 @@ const HeroEditDialog = ({ open, onOpenChange }: HeroEditDialogProps) => {
               id="linkedin"
               value={formData.linkedin}
               onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="github">GitHub URL</Label>
+            <Input
+              id="github"
+              value={formData.github}
+              onChange={(e) => setFormData({ ...formData, github: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="twitter">Twitter/X URL</Label>
+            <Input
+              id="twitter"
+              value={formData.twitter}
+              onChange={(e) => setFormData({ ...formData, twitter: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="youtube">YouTube URL</Label>
+            <Input
+              id="youtube"
+              value={formData.youtube}
+              onChange={(e) => setFormData({ ...formData, youtube: e.target.value })}
             />
           </div>
           <div className="space-y-2">
