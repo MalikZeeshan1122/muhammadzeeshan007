@@ -19,36 +19,40 @@ const PetProjects = () => {
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
       <div className="flex items-center gap-2 mb-8">
-        <h2 className="text-3xl font-bold text-foreground">pet projects</h2>
+        <h2 className="text-3xl font-bold text-foreground">Projects</h2>
         <EditButton onClick={() => setEditOpen(true)} />
       </div>
-      <div className="space-y-6">
+      <div className="space-y-8">
         {projects.map((project, index) => (
-          <div key={index} className="space-y-2">
-            <div className="flex items-center gap-3">
-              <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link hover:text-link-hover transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link hover:text-link-hover transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                </a>
-              )}
+          <div key={index} className="group space-y-3 p-5 rounded-lg border border-border hover:border-primary/50 hover:shadow-md transition-all duration-200 bg-card">
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors flex-1">{project.title}</h3>
+              <div className="flex items-center gap-2">
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label="View demo"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label="View GitHub"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
             </div>
-            <p className="text-foreground leading-relaxed">{project.description}</p>
+            <p className="text-foreground/90 leading-relaxed">{project.description}</p>
           </div>
         ))}
       </div>
@@ -56,7 +60,7 @@ const PetProjects = () => {
       <ArrayEditDialog
         open={editOpen}
         onOpenChange={setEditOpen}
-        title="Edit Pet Projects"
+        title="Edit Projects"
         data={projects}
         onSave={handleSave}
         fields={[
