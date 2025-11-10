@@ -25,7 +25,8 @@ const EditModeToggle = () => {
     }
   };
 
-  const showHelp = () => {
+  const showHelp = (e: React.MouseEvent) => {
+    e.stopPropagation();
     toast.info("Edit Mode Guide", {
       description: "1. Enable edit mode\n2. Click edit buttons on sections\n3. Make your changes\n4. Click Save & Exit\n\nPress 'E' for quick toggle",
       duration: 6000,
