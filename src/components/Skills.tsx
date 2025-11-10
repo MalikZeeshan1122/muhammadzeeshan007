@@ -1,21 +1,21 @@
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { useEditMode } from "@/contexts/EditModeContext";
+import EditButton from "./EditButton";
+import SkillsEditDialog from "./SkillsEditDialog";
 
 const Skills = () => {
-  const technicalSkills = [
-    "Python", "SQL", "Tableau", "Pandas", "Numpy", "SciPy", "Seaborn", "Matplotlib",
-    "TensorFlow", "Deep Learning", "LLM", "NLP", "Linear Regression", "Logistic Regression",
-    "Classification", "Random Forest", "Clustering", "PCA", "Anomaly Detection", 
-    "Docker", "Flask", "Streamlit"
-  ];
-
-  const softSkills = [
-    "Research", "Communication", "Accountability", "Collaboration", 
-    "Critical Thinking", "Passion", "Presentation", "Idea Generation"
-  ];
+  const { profileData } = useEditMode();
+  const [editOpen, setEditOpen] = useState(false);
+  const technicalSkills = profileData.technicalSkills;
+  const softSkills = profileData.softSkills;
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-foreground mb-8">Skills</h2>
+      <div className="flex items-center gap-2 mb-8">
+        <h2 className="text-3xl font-bold text-foreground">Skills</h2>
+        <EditButton onClick={() => setEditOpen(true)} />
+      </div>
       
       <div className="space-y-6">
         <div>
@@ -40,6 +40,8 @@ const Skills = () => {
           </div>
         </div>
       </div>
+
+      <SkillsEditDialog open={editOpen} onOpenChange={setEditOpen} />
     </section>
   );
 };

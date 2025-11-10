@@ -1,22 +1,26 @@
+import { useState } from "react";
+import { useEditMode } from "@/contexts/EditModeContext";
+import EditButton from "./EditButton";
+import ArrayEditDialog from "./ArrayEditDialog";
+
 const Education = () => {
-  const education = [
-    {
-      degree: "Bachelor of Computer Science, Artificial Intelligence",
-      institution: "Islamia University Bahawalpur, Pakistan",
-      period: "2022 – 2026",
-      details: null
-    },
-    {
-      degree: "FSC Intermediate in Pre-Engineering",
-      institution: "Moon College Bahawalpur, Punjab, Pakistan",
-      period: "2022",
-      details: "Men's Cricket Team Captain"
-    }
-  ];
+  const { profileData, updateProfileData } = useEditMode();
+  const [editOpen, setEditOpen] = useState(false);
+  const education = profileData.education;
+
+  const handleSave = (data: any[]) => {
+    updateProfileData({
+      ...profileData,
+      education: data
+    });
+  };
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-foreground mb-8">Education</h2>
+      <div className="flex items-center gap-2 mb-8">
+        <h2 className="text-3xl font-bold text-foreground">Education</h2>
+        <EditButton onClick={() => setEditOpen(true)} />
+      </div>
       <div className="space-y-6">
         {education.map((edu, index) => (
           <div key={index} className="space-y-1">
@@ -29,6 +33,20 @@ const Education = () => {
           </div>
         ))}
       </div>
+
+      <ArrayEditDialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        title="Edit Education"
+        data={education}
+        onSave={handleSave}
+        fields={[
+          { name: 'degree', label: 'Degree', type: 'text' },
+          { name: 'institution', label: 'Institution', type: 'text' },
+          { name: 'period', label: 'Period', type: 'text' },
+          { name: 'details', label: 'Additional Details (optional)', type: 'text' }
+        ]}
+      />
     </section>
   );
 };

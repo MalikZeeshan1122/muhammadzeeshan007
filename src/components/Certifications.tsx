@@ -1,20 +1,26 @@
+import { useState } from "react";
+import { useEditMode } from "@/contexts/EditModeContext";
+import EditButton from "./EditButton";
+import ArrayEditDialog from "./ArrayEditDialog";
+
 const Certifications = () => {
-  const certifications = [
-    { name: "Prime Minister's Youth Skills (NAVTTC)", year: "2023" },
-    { name: "Microsoft Certified Azure AI", year: "2023" },
-    { name: "Machine learning specialization | Coursera", year: "2023" },
-    { name: "Google Data Analytics", year: "2023" },
-    { name: "Applied Data Science Capstone", year: "2023" },
-    { name: "IBM AI Engineering", year: "2023" },
-    { name: "Machine learning in Production | Coursera", year: "2023" },
-    { name: "Machine learning Specialization | Stanford University | Coursera", year: "2023" },
-    { name: "Generative AI: Prompt Engineering | Coursera", year: "2023" },
-    { name: "AWS Certified Solutions Architect - Associate | Coursera", year: "2024" }
-  ];
+  const { profileData, updateProfileData } = useEditMode();
+  const [editOpen, setEditOpen] = useState(false);
+  const certifications = profileData.certifications;
+
+  const handleSave = (data: any[]) => {
+    updateProfileData({
+      ...profileData,
+      certifications: data
+    });
+  };
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-foreground mb-8">Certifications</h2>
+      <div className="flex items-center gap-2 mb-8">
+        <h2 className="text-3xl font-bold text-foreground">Certifications</h2>
+        <EditButton onClick={() => setEditOpen(true)} />
+      </div>
       <div className="grid gap-3">
         {certifications.map((cert, index) => (
           <div 
@@ -26,6 +32,18 @@ const Certifications = () => {
           </div>
         ))}
       </div>
+
+      <ArrayEditDialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        title="Edit Certifications"
+        data={certifications}
+        onSave={handleSave}
+        fields={[
+          { name: 'name', label: 'Certification Name', type: 'text' },
+          { name: 'year', label: 'Year', type: 'text' }
+        ]}
+      />
     </section>
   );
 };
