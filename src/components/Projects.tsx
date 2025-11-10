@@ -51,7 +51,8 @@ const Projects = () => {
         fields={[
           { name: 'title', label: 'Project Title', type: 'text' },
           { name: 'description', label: 'Description', type: 'text' },
-          { name: 'points', label: 'Key Points (one per line)', type: 'array' }
+          { name: 'points', label: 'Key Points (one per line)', type: 'array' },
+          { name: 'media', label: 'Images & Videos', type: 'media' }
         ]}
       />
     </section>

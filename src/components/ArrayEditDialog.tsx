@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon } from "lucide-react";
+import ProjectMediaUpload from "./ProjectMediaUpload";
 
 interface ArrayEditDialogProps {
   open: boolean;
@@ -12,16 +13,24 @@ interface ArrayEditDialogProps {
   title: string;
   data: any[];
   onSave: (data: any[]) => void;
-  fields: { name: string; label: string; type: 'text' | 'textarea' | 'array' }[];
+  fields: { name: string; label: string; type: 'text' | 'textarea' | 'array' | 'media' }[];
 }
 
 const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: ArrayEditDialogProps) => {
   const [items, setItems] = useState(data);
+  const [mediaDialogOpen, setMediaDialogOpen] = useState(false);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number | null>(null);
 
   const handleAdd = () => {
     const newItem: any = {};
     fields.forEach(field => {
-      newItem[field.name] = field.type === 'array' ? [] : '';
+      if (field.type === 'array') {
+        newItem[field.name] = [];
+      } else if (field.type === 'media') {
+        newItem[field.name] = [];
+      } else {
+        newItem[field.name] = '';
+      }
     });
     setItems([...items, newItem]);
   };
@@ -45,6 +54,22 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
   const handleSave = () => {
     onSave(items);
     onOpenChange(false);
+  };
+
+  const handleMediaSave = (media: string[]) => {
+    if (currentMediaIndex !== null) {
+      const updated = [...items];
+      const mediaField = fields.find(f => f.type === 'media');
+      if (mediaField) {
+        updated[currentMediaIndex][mediaField.name] = media;
+        setItems(updated);
+      }
+    }
+  };
+
+  const openMediaDialog = (index: number) => {
+    setCurrentMediaIndex(index);
+    setMediaDialogOpen(true);
   };
 
   return (
@@ -82,6 +107,18 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
                       rows={4}
                       placeholder="Enter one item per line"
                     />
+                  ) : field.type === 'media' ? (
+                    <div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => openMediaDialog(index)}
+                        className="w-full"
+                      >
+                        <ImageIcon className="w-4 h-4 mr-2" />
+                        Manage Media ({Array.isArray(item[field.name]) ? item[field.name].length : 0} items)
+                      </Button>
+                    </div>
                   ) : (
                     <Input
                       value={item[field.name]}
@@ -102,6 +139,15 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
           <Button onClick={handleSave}>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
+
+      {currentMediaIndex !== null && (
+        <ProjectMediaUpload
+          open={mediaDialogOpen}
+          onOpenChange={setMediaDialogOpen}
+          media={items[currentMediaIndex]?.[fields.find(f => f.type === 'media')?.name || 'media'] || []}
+          onSave={handleMediaSave}
+        />
+      )}
     </Dialog>
   );
 };
