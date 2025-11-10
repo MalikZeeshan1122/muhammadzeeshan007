@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MessageCircle, Twitter, Linkedin, Facebook, Instagram, Github } from "lucide-react";
+import { Mail, Phone, MessageCircle, Twitter, Linkedin, Facebook, Instagram, Github, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -248,7 +248,7 @@ const Contact = () => {
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
               title="Substack"
             >
-              <Mail className="w-5 h-5" />
+              <Newspaper className="w-5 h-5" />
               <span className="text-sm">Substack</span>
             </a>
 
