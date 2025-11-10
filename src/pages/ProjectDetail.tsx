@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEditMode } from "@/contexts/EditModeContext";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -31,7 +32,7 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <Button 
               variant="ghost" 
@@ -49,21 +50,36 @@ const ProjectDetail = () => {
       </nav>
 
       {/* Project Content */}
-      <main className="pt-24 pb-16">
-        <article className="max-w-4xl mx-auto px-6">
+      <main className="pt-20 pb-16">
+        <article className="max-w-5xl mx-auto px-6">
           {/* Project Header */}
           <div className="mb-8">
+            {project.category && (
+              <Badge variant="secondary" className="mb-4 text-sm px-4 py-1.5">
+                {project.category}
+              </Badge>
+            )}
+            
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
               {project.title}
             </h1>
+
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4" />
+                <span>{profileData?.hero?.name || "Muhammad Zeeshan"}</span>
+              </div>
+              {project.date && (
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{project.date}</span>
+                </div>
+              )}
+            </div>
             
-            <div className="flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-3">
               {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={project.url} target="_blank" rel="noopener noreferrer">
                   <Button variant="default" className="gap-2">
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
@@ -71,11 +87,7 @@ const ProjectDetail = () => {
                 </a>
               )}
               {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={project.github} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="gap-2">
                     <Github className="w-4 h-4" />
                     View Source Code
@@ -85,68 +97,116 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          {/* Project Description */}
+          {/* Main Content Grid */}
           <div className="space-y-8">
-            <section className="bg-card border border-border rounded-lg p-6 shadow-sm">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Overview</h2>
+            {/* Project Description */}
+            <Card className="p-6 border-border">
+              <h2 className="text-2xl font-bold text-foreground mb-4">Project Description</h2>
               <p className="text-foreground/90 leading-relaxed text-lg">
                 {project.description}
               </p>
-            </section>
+            </Card>
 
-            {/* Technologies Used */}
+            {/* Problem & Challenge */}
+            {project.problem && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Problem & Challenge</h2>
+                <p className="text-foreground/90 leading-relaxed">
+                  {project.problem}
+                </p>
+              </Card>
+            )}
+
+            {/* Target Audience */}
+            {project.audience && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Target Audience</h2>
+                <p className="text-foreground/90 leading-relaxed whitespace-pre-line">
+                  {project.audience}
+                </p>
+              </Card>
+            )}
+
+            {/* Solution & Core Features */}
+            {(project.solution || project.features) && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Solution & Core Features</h2>
+                {project.solution && (
+                  <p className="text-foreground/90 leading-relaxed mb-4">
+                    {project.solution}
+                  </p>
+                )}
+                {project.features && project.features.length > 0 && (
+                  <ul className="space-y-3 mt-4">
+                    {project.features.map((feature: string, index: number) => (
+                      <li 
+                        key={index} 
+                        className="text-foreground/90 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-2 before:h-2 before:rounded-full before:bg-primary"
+                      >
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Card>
+            )}
+
+            {/* USP */}
+            {project.usp && (
+              <Card className="p-6 border-border bg-accent/20">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Unique Selling Proposition</h2>
+                <p className="text-foreground/90 leading-relaxed font-medium">
+                  {project.usp}
+                </p>
+              </Card>
+            )}
+
+            {/* Implementation & Technology */}
+            {project.implementation && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Implementation & Technology</h2>
+                <p className="text-foreground/90 leading-relaxed whitespace-pre-line">
+                  {project.implementation}
+                </p>
+              </Card>
+            )}
+
+            {/* Tech Stack */}
             {project.technologies && project.technologies.length > 0 && (
-              <section className="bg-card border border-border rounded-lg p-6 shadow-sm">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Technologies Used</h2>
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Tech Stack</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech: string, index: number) => (
-                    <Badge key={index} variant="secondary" className="text-sm px-4 py-1.5">
+                    <Badge key={index} variant="secondary" className="text-sm px-4 py-2">
                       {tech}
                     </Badge>
                   ))}
                 </div>
-              </section>
+              </Card>
             )}
 
-            {/* Key Features */}
-            {project.features && project.features.length > 0 && (
-              <section className="bg-card border border-border rounded-lg p-6 shadow-sm">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Key Features</h2>
-                <ul className="space-y-3">
-                  {project.features.map((feature: string, index: number) => (
-                    <li 
-                      key={index} 
-                      className="text-foreground/90 leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-2 before:h-2 before:rounded-full before:bg-primary"
-                    >
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {/* Implementation Details */}
-            {project.implementation && (
-              <section className="bg-card border border-border rounded-lg p-6 shadow-sm">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Implementation Details</h2>
-                <p className="text-foreground/90 leading-relaxed whitespace-pre-line">
-                  {project.implementation}
-                </p>
-              </section>
-            )}
-
-            {/* Results/Outcome */}
+            {/* Results & Impact */}
             {project.results && (
-              <section className="bg-card border border-border rounded-lg p-6 shadow-sm">
+              <Card className="p-6 border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-4">Results & Impact</h2>
                 <p className="text-foreground/90 leading-relaxed whitespace-pre-line">
                   {project.results}
                 </p>
-              </section>
+              </Card>
             )}
 
-            {/* Links Section */}
-            <section className="bg-accent/30 border border-border rounded-lg p-6">
+            {/* Additional Information */}
+            {project.additionalInfo && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Additional Information</h2>
+                <div className="text-foreground/90 leading-relaxed whitespace-pre-line">
+                  {project.additionalInfo}
+                </div>
+              </Card>
+            )}
+
+            {/* Project Links */}
+            <Card className="p-6 border-border bg-accent/10">
               <h2 className="text-2xl font-bold text-foreground mb-4">Project Links</h2>
               <div className="space-y-3">
                 {project.github && (
@@ -176,11 +236,20 @@ const ProjectDetail = () => {
                   </div>
                 )}
               </div>
-            </section>
+            </Card>
+
+            {/* Category Badge */}
+            {project.category && (
+              <div className="flex justify-center pt-4">
+                <Badge variant="outline" className="text-sm px-6 py-2 border-2">
+                  Category: {project.category}
+                </Badge>
+              </div>
+            )}
           </div>
 
-          {/* Back Button */}
-          <div className="mt-12 pt-8 border-t border-border">
+          {/* Navigation Footer */}
+          <div className="mt-16 pt-8 border-t border-border flex justify-between items-center">
             <Button 
               onClick={() => navigate("/")}
               variant="outline"
@@ -190,6 +259,25 @@ const ProjectDetail = () => {
               <ArrowLeft className="w-4 h-4" />
               Back to All Projects
             </Button>
+            
+            <div className="flex gap-3">
+              {projectIndex > 0 && (
+                <Button
+                  onClick={() => navigate(`/project/${projectIndex - 1}`)}
+                  variant="ghost"
+                >
+                  ← Previous
+                </Button>
+              )}
+              {projectIndex < projects.length - 1 && (
+                <Button
+                  onClick={() => navigate(`/project/${projectIndex + 1}`)}
+                  variant="ghost"
+                >
+                  Next →
+                </Button>
+              )}
+            </div>
           </div>
         </article>
       </main>
