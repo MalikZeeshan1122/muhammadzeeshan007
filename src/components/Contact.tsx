@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { Mail, Phone, MessageCircle, Twitter, Linkedin, Facebook, Instagram, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -202,51 +202,111 @@ const Contact = () => {
           </form>
         </Card>
 
-        {/* Newsletter Subscription */}
+        {/* Social Links & Newsletter */}
         <Card className="p-6 bg-accent/5">
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-3 items-center justify-center">
-              <a href="https://chipro.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                chipro
-              </a>
-              <a href="https://chiphuyen.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                chiphuyen
-              </a>
-              <a href="https://twitter.com/chiphuyen" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                chiphuyen
-              </a>
-              <a href="https://chipiscrazy.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                chipiscrazy
-              </a>
-              <a href="https://twitter.com/huyenchip19" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                huyenchip19
-              </a>
-              <a href="https://github.com/chiphuyen" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
-                chiphuyen
-              </a>
-            </div>
+          <h3 className="text-xl font-semibold text-foreground mb-4 text-center">Connect With Me</h3>
+          
+          {/* Social Media Links */}
+          <div className="flex flex-wrap gap-4 items-center justify-center mb-6">
+            <a
+              href="mailto:malikzeeshan3.1417@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="Gmail"
+            >
+              <Mail className="w-5 h-5" />
+              <span className="text-sm">Gmail</span>
+            </a>
 
-            <div className="text-center">
-              <a href="mailto:malikzeeshan3.1417@gmail.com" className="text-foreground/70 hover:text-link transition-colors">
-                malikzeeshan3.1417@gmail.com
-              </a>
-            </div>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
+              <span className="text-sm">Twitter</span>
+            </a>
 
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              toast({
-                title: "Subscribed!",
-                description: "Thank you for subscribing to updates.",
-              });
-            }} className="flex gap-2">
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+              <span className="text-sm">LinkedIn</span>
+            </a>
+
+            <a
+              href="https://substack.com/@yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="Substack"
+            >
+              <Mail className="w-5 h-5" />
+              <span className="text-sm">Substack</span>
+            </a>
+
+            <a
+              href="https://facebook.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+              <span className="text-sm">Facebook</span>
+            </a>
+
+            <a
+              href="https://instagram.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+              <span className="text-sm">Instagram</span>
+            </a>
+
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              title="GitHub"
+            >
+              <Github className="w-5 h-5" />
+              <span className="text-sm">GitHub</span>
+            </a>
+          </div>
+
+          {/* Newsletter Subscription */}
+          <div className="space-y-4 border-t border-border pt-6">
+            <h4 className="text-lg font-medium text-foreground text-center">Subscribe to Newsletter</h4>
+            
+            <form
+              action="https://substack.com/subscribe"
+              method="post"
+              target="_blank"
+              className="flex flex-col sm:flex-row gap-2"
+            >
               <Input
                 type="email"
-                placeholder="hi@[thiswebsite]"
+                name="email"
+                placeholder="malikzeeshan3.1417@gmail.com"
                 required
                 className="flex-1"
                 maxLength={255}
               />
-              <Button type="submit">Subscribe</Button>
+              <Button type="submit" className="whitespace-nowrap">
+                Subscribe
+              </Button>
             </form>
 
             <p className="text-xs text-muted-foreground text-center">
