@@ -6,7 +6,7 @@ import ArrayEditDialog from "./ArrayEditDialog";
 const Experience = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const experiences = profileData.experiences;
+  const experiences = profileData?.experiences || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({

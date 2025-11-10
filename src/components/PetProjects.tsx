@@ -7,7 +7,7 @@ import { ExternalLink, Github } from "lucide-react";
 const PetProjects = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const projects = profileData.petProjects || [];
+  const projects = profileData?.petProjects || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({

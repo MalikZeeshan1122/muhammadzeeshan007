@@ -6,7 +6,7 @@ import ArrayEditDialog from "./ArrayEditDialog";
 const MiscLinks = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const links = profileData.miscLinks || [];
+  const links = profileData?.miscLinks || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({

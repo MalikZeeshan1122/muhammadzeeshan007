@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const Hero = () => {
   const { profileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const hero = profileData.hero;
+  const hero = profileData?.hero || {};
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-16 md:py-24">

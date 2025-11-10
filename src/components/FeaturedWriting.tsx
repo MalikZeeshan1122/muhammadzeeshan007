@@ -6,7 +6,7 @@ import ArrayEditDialog from "./ArrayEditDialog";
 const FeaturedWriting = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const writing = profileData.featuredWriting || [];
+  const writing = profileData?.featuredWriting || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({

@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 const Teaching = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const teaching = profileData.teaching || [];
+  const teaching = profileData?.teaching || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({

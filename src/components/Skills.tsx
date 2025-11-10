@@ -7,8 +7,8 @@ import SkillsEditDialog from "./SkillsEditDialog";
 const Skills = () => {
   const { profileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const technicalSkills = profileData.technicalSkills;
-  const softSkills = profileData.softSkills;
+  const technicalSkills = profileData?.technicalSkills || [];
+  const softSkills = profileData?.softSkills || [];
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
