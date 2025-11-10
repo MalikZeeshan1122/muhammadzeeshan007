@@ -80,10 +80,16 @@ const DEFAULT_PROFILE_DATA = {
   petProjects: [
     {
       title: "SpaceX Falcon 9 Prediction",
+      category: "Machine Learning & Data Science",
+      date: "November 2024",
       description: "Predicted landing success using classification models and SpaceX API data, with EDA and interactive dashboards.",
       url: "",
       github: "",
       images: [],
+      problem: "SpaceX needs to predict Falcon 9 rocket landing success to optimize mission planning, reduce costs, and improve safety. Failed landings result in significant financial losses and mission delays. The challenge is to build an accurate predictive model using historical launch data to identify patterns and key factors affecting landing outcomes.",
+      audience: "Space Industry Stakeholders: Companies and organizations planning satellite deployments who need reliable launch success predictions.\n\nData Scientists & ML Engineers: Professionals interested in real-world aerospace applications of machine learning and predictive analytics.\n\nSpace Technology Enthusiasts: Researchers and hobbyists tracking SpaceX missions and interested in data-driven analysis of rocket landing success factors.",
+      solution: "Developed a comprehensive machine learning solution that fetches real-time data from SpaceX API, performs extensive exploratory data analysis, and trains multiple classification models to predict landing success with high accuracy.",
+      usp: "Unlike simple analytics dashboards, this project combines real-time API integration, advanced feature engineering, and multiple ML models with interactive visualizations to provide actionable insights into rocket landing predictions. The model identifies specific factors like payload mass, orbit type, and launch site that directly impact success rates.",
       technologies: ["Python", "scikit-learn", "Pandas", "Matplotlib", "SpaceX API", "Jupyter"],
       features: [
         "Real-time data fetching from SpaceX API",
@@ -92,8 +98,9 @@ const DEFAULT_PROFILE_DATA = {
         "Interactive dashboards for prediction visualization",
         "Model performance comparison and evaluation"
       ],
-      implementation: "Built a machine learning pipeline that fetches data from SpaceX API, performs data cleaning and feature engineering, trains multiple classification models, and evaluates their performance. The best-performing model is used to predict landing success with an interactive dashboard for visualization.",
-      results: "Achieved 95% accuracy in predicting landing success. The model successfully identified key factors affecting landing outcomes, including payload mass, orbit type, and launch site."
+      implementation: "Built a machine learning pipeline that fetches data from SpaceX API, performs data cleaning and feature engineering, trains multiple classification models, and evaluates their performance. The best-performing model is used to predict landing success with an interactive dashboard for visualization. The system uses Python for data processing, scikit-learn for model training, and Matplotlib for creating insightful visualizations of prediction outcomes and feature importance.",
+      results: "Achieved 95% accuracy in predicting landing success. The model successfully identified key factors affecting landing outcomes, including payload mass, orbit type, and launch site. The interactive dashboard provides mission planners with confidence scores and risk assessments for upcoming launches.",
+      additionalInfo: "Future Enhancements:\n- Real-time prediction API for integration with mission planning systems\n- Advanced ensemble methods combining multiple models for improved accuracy\n- Weather data integration for more comprehensive risk assessment\n- Automated retraining pipeline as new launch data becomes available\n\nTechnical Achievements:\n- Handled imbalanced dataset using SMOTE and class weighting techniques\n- Feature engineering included polynomial features and interaction terms\n- Cross-validation with stratified k-fold to ensure robust model evaluation\n- Comprehensive model comparison including precision, recall, and F1-score metrics"
     },
     {
       title: "NYC Motor Vehicle Collision Analysis",
