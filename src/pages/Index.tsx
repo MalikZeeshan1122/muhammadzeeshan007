@@ -11,6 +11,7 @@ import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import MiscLinks from "@/components/MiscLinks";
+import Contact from "@/components/Contact";
 import EditModeToggle from "@/components/EditModeToggle";
 import { Separator } from "@/components/ui/separator";
 
@@ -67,8 +68,12 @@ const Index = () => {
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
         <div id="contact">
-          <MiscLinks />
+          <Contact />
         </div>
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <MiscLinks />
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
