@@ -291,7 +291,7 @@ const Contact = () => {
             <h4 className="text-lg font-medium text-foreground text-center">Subscribe to Newsletter</h4>
             
             <form
-              action="https://substack.com/subscribe"
+              action="https://malikzeeshan007.substack.com/subscribe"
               method="post"
               target="_blank"
               className="flex flex-col sm:flex-row gap-2"
@@ -299,7 +299,7 @@ const Contact = () => {
               <Input
                 type="email"
                 name="email"
-                placeholder="malikzeeshan3.1417@gmail.com"
+                placeholder="Enter your email"
                 required
                 className="flex-1"
                 maxLength={255}
