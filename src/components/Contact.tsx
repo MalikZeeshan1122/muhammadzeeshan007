@@ -34,11 +34,8 @@ const Contact = () => {
     }
   };
 
-  const handleWhatsAppClick = () => {
-    const phone = "+923406525171";
-    const message = encodeURIComponent("Hi, I'd like to get in touch with you.");
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-  };
+  const whatsappMessage = encodeURIComponent("Hi, I'd like to get in touch with you.");
+  const whatsappUrl = `https://wa.me/923406525171?text=${whatsappMessage}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,11 +105,13 @@ const Contact = () => {
           </div>
 
           <Button
-            onClick={handleWhatsAppClick}
+            asChild
             className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white"
           >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            Message on WhatsApp
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Message on WhatsApp
+            </a>
           </Button>
         </Card>
 
