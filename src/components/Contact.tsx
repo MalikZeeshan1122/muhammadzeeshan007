@@ -34,8 +34,8 @@ const Contact = () => {
     }
   };
 
-  const whatsappMessage = encodeURIComponent("Hi, I'd like to get in touch with you.");
-  const whatsappUrl = `https://wa.me/923406525171?text=${whatsappMessage}`;
+  // Using web.whatsapp.com to avoid API blocking
+  const whatsappUrl = `https://web.whatsapp.com/send?phone=923406525171`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
