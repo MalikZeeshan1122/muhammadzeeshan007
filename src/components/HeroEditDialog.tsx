@@ -194,6 +194,14 @@ const HeroEditDialog = ({ open, onOpenChange }: HeroEditDialogProps) => {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="substack">Substack URL</Label>
+            <Input
+              id="substack"
+              value={formData.substack}
+              onChange={(e) => setFormData({ ...formData, substack: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="resumeUrl">Resume URL</Label>
             <Input
               id="resumeUrl"
