@@ -40,14 +40,6 @@ const DEFAULT_PROFILE_DATA = {
       ]
     },
     {
-      year: "Multiple Events",
-      title: "AI Hackathon Participant",
-      organization: "Various Organizations",
-      points: [
-        "Developed innovative AI solutions under tight deadlines, showcasing problem-solving and collaboration skills."
-      ]
-    },
-    {
       year: "2024",
       title: "Break with Data Community Member",
       organization: "ML 30-Day Challenge",
@@ -69,6 +61,14 @@ const DEFAULT_PROFILE_DATA = {
       organization: "Pak Angels and iCodeGuru",
       points: [
         "Recognized as a Top Performer in the Generative AI Training Cohort-I by Pak Angels and iCodeGuru."
+      ]
+    },
+    {
+      year: "Multiple Events",
+      title: "AI Hackathon Participant",
+      organization: "Various Organizations",
+      points: [
+        "Developed innovative AI solutions under tight deadlines, showcasing problem-solving and collaboration skills."
       ]
     }
   ],
