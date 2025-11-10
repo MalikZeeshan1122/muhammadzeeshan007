@@ -17,12 +17,12 @@ const Skills = () => {
         <EditButton onClick={() => setEditOpen(true)} />
       </div>
       
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div>
-          <h3 className="text-xl font-semibold text-foreground mb-4">Technical Skills</h3>
-          <div className="flex flex-wrap gap-2">
+          <h3 className="text-xl font-semibold text-foreground mb-5">Technical Skills</h3>
+          <div className="flex flex-wrap gap-2.5">
             {technicalSkills.map((skill, index) => (
-              <Badge key={index} variant="secondary" className="text-sm">
+              <Badge key={index} variant="secondary" className="text-sm px-4 py-1.5 font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default">
                 {skill}
               </Badge>
             ))}
@@ -30,10 +30,10 @@ const Skills = () => {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold text-foreground mb-4">Soft Skills</h3>
-          <div className="flex flex-wrap gap-2">
+          <h3 className="text-xl font-semibold text-foreground mb-5">Soft Skills</h3>
+          <div className="flex flex-wrap gap-2.5">
             {softSkills.map((skill, index) => (
-              <Badge key={index} variant="outline" className="text-sm">
+              <Badge key={index} variant="outline" className="text-sm px-4 py-1.5 font-medium border-2 hover:bg-accent hover:border-primary transition-colors cursor-default">
                 {skill}
               </Badge>
             ))}
