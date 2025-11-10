@@ -181,97 +181,13 @@ const ProjectDetail = () => {
               </section>
             ) : null}
 
-            {/* Project Description */}
+            {/* Project Overview */}
             <Card className="p-8 border-border">
               <h2 className="text-3xl font-bold text-foreground mb-6">Project Overview</h2>
               <p className="text-foreground/90 leading-relaxed text-lg">
                 {project.description}
               </p>
             </Card>
-
-            {/* Problem & Challenge */}
-            {project.problem && (
-              <Card className="p-8 border-border bg-gradient-to-br from-background to-accent/5">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Problem & Challenge</h2>
-                <p className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.problem}
-                </p>
-              </Card>
-            )}
-
-            {/* Target Audience */}
-            {project.targetAudience && (
-              <Card className="p-8 border-border">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Target Audience</h2>
-                <div className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.targetAudience}
-                </div>
-              </Card>
-            )}
-
-            {/* Solution & Core Features */}
-            {project.solution && (
-              <Card className="p-8 border-border bg-gradient-to-br from-primary/5 to-background">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Solution & Core Features</h2>
-                <div className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.solution}
-                </div>
-              </Card>
-            )}
-
-            {/* Unique Selling Proposition */}
-            {project.usp && (
-              <Card className="p-8 border-border border-2 border-primary/20">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Unique Selling Proposition</h2>
-                <p className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.usp}
-                </p>
-              </Card>
-            )}
-
-            {/* Implementation & Technology */}
-            {project.implementation && (
-              <Card className="p-8 border-border">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Implementation & Technology</h2>
-                <p className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.implementation}
-                </p>
-              </Card>
-            )}
-
-            {/* Tech Stack */}
-            {project.techStack && project.techStack.length > 0 && (
-              <Card className="p-8 border-border bg-gradient-to-br from-background to-secondary/5">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Tech Stack</h2>
-                <div className="flex flex-wrap gap-3">
-                  {project.techStack.map((tech: string, index: number) => (
-                    <Badge key={index} variant="secondary" className="text-base px-4 py-2">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
-            )}
-
-            {/* Results & Impact */}
-            {project.results && (
-              <Card className="p-8 border-border bg-gradient-to-br from-accent/10 to-background">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Results & Impact</h2>
-                <p className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.results}
-                </p>
-              </Card>
-            )}
-
-            {/* Additional Information */}
-            {project.additionalInfo && (
-              <Card className="p-8 border-border">
-                <h2 className="text-3xl font-bold text-foreground mb-6">Additional Information</h2>
-                <div className="text-foreground/90 leading-relaxed text-lg whitespace-pre-line">
-                  {project.additionalInfo}
-                </div>
-              </Card>
-            )}
           </div>
 
           {/* Navigation Footer */}
