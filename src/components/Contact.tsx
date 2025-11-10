@@ -209,7 +209,7 @@ const Contact = () => {
           {/* Social Media Links */}
           <div className="flex flex-wrap gap-4 items-center justify-center mb-6">
             <a
-              href="mailto:malikzeeshan3.1417@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&to=malikzeeshan3.1417@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
