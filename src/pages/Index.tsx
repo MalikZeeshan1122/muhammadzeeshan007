@@ -1,4 +1,4 @@
-import { EditModeProvider } from "@/contexts/EditModeContext";
+import { EditModeProvider, useEditMode } from "@/contexts/EditModeContext";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
 import FeaturedTalks from "@/components/FeaturedTalks";
@@ -16,38 +16,78 @@ import { Separator } from "@/components/ui/separator";
 const Index = () => {
   return (
     <EditModeProvider>
-      <div className="min-h-screen bg-background">
-        <Hero />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <Experience />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <FeaturedTalks />
-        <Teaching />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <FeaturedWriting />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <PetProjects />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <Publications />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <Skills />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <Certifications />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <Education />
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        <MiscLinks />
-        
-        <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
-          <hr className="mb-8 border-border" />
-          <p className="text-center text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Muhammad Zeeshan. All rights reserved.
-          </p>
-        </footer>
-
-        <EditModeToggle />
-      </div>
+      <IndexContent />
     </EditModeProvider>
+  );
+};
+
+const IndexContent = () => {
+  const { profileData } = useEditMode();
+  
+  return (
+    <div className="min-h-screen bg-background">
+      <Hero />
+      <hr className="max-w-3xl mx-auto my-8 border-border" />
+      <Experience />
+      
+      {profileData?.featuredTalks?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <FeaturedTalks />
+        </>
+      )}
+      
+      {profileData?.teaching?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <Teaching />
+        </>
+      )}
+      
+      {profileData?.featuredWriting?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <FeaturedWriting />
+        </>
+      )}
+      
+      {profileData?.petProjects?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <PetProjects />
+        </>
+      )}
+      
+      {profileData?.publications?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <Publications />
+        </>
+      )}
+      
+      <hr className="max-w-3xl mx-auto my-8 border-border" />
+      <Skills />
+      <hr className="max-w-3xl mx-auto my-8 border-border" />
+      <Certifications />
+      <hr className="max-w-3xl mx-auto my-8 border-border" />
+      <Education />
+      
+      {profileData?.miscLinks?.length > 0 && (
+        <>
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          <MiscLinks />
+        </>
+      )}
+      
+      <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
+        <hr className="mb-8 border-border" />
+        <p className="text-center text-muted-foreground text-sm">
+          © {new Date().getFullYear()} Muhammad Zeeshan. All rights reserved.
+        </p>
+      </footer>
+
+      <EditModeToggle />
+    </div>
   );
 };
 
