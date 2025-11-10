@@ -83,6 +83,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Predicted landing success using classification models and SpaceX API data, with EDA and interactive dashboards.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "scikit-learn", "Pandas", "Matplotlib", "SpaceX API", "Jupyter"],
       features: [
         "Real-time data fetching from SpaceX API",
@@ -99,6 +100,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Created interactive dashboards and geospatial visualizations for analyzing NYC vehicle collision data.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "Pandas", "Plotly", "Folium", "GeoPandas", "Streamlit"],
       features: [
         "Geospatial visualization of collision hotspots",
@@ -115,6 +117,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Built a financial dashboard using World Bank API data to analyze economic trends like GDP and trade.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "World Bank API", "Plotly", "Dash", "Pandas", "NumPy"],
       features: [
         "Multi-country economic indicator comparison",
@@ -131,6 +134,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Developed classification models to predict breast cancer malignancy and built a CNN to classify skin lesions from medical images, deploying both using Flask.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "TensorFlow", "Keras", "scikit-learn", "Flask", "OpenCV", "NumPy"],
       features: [
         "Breast cancer classification using Wisconsin dataset",
@@ -148,6 +152,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Created an AI tool to generate personalized cold emails and integrated job listings via web scraping.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "OpenAI API", "BeautifulSoup", "Selenium", "Flask", "LangChain"],
       features: [
         "Automated job listing extraction from multiple platforms",
@@ -164,6 +169,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Built an NLP-based chatbot for automating FAQs and ticket generation, deployed using Flask.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "NLTK", "spaCy", "Flask", "SQLite", "Rasa", "TensorFlow"],
       features: [
         "Intent recognition and entity extraction",
@@ -181,6 +187,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Analyzed product reviews to classify sentiment and visualize trends using NLP techniques.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "NLTK", "VADER", "TextBlob", "Matplotlib", "Seaborn", "Pandas"],
       features: [
         "Multi-class sentiment classification (positive, negative, neutral)",
@@ -197,6 +204,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Developed regression models to predict real estate prices and visualized key factors in an interactive dashboard.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "scikit-learn", "XGBoost", "Pandas", "Plotly", "Streamlit"],
       features: [
         "Multiple regression models (Linear, Ridge, XGBoost)",
@@ -213,6 +221,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Created animated bar chart races in Python using Matplotlib, visualizing time-series data trends with dynamic, engaging animations.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "Matplotlib", "Pandas", "NumPy", "FFmpeg"],
       features: [
         "Smooth animated transitions",
@@ -229,6 +238,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Developed animated line graphs in Python to visualize time-series data, with smooth transitions to highlight data trends over time.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "Matplotlib", "Pandas", "NumPy", "MoviePy"],
       features: [
         "Multi-line animated charts",
@@ -245,6 +255,7 @@ const DEFAULT_PROFILE_DATA = {
       description: "Automated PDF report creation using Python and Quarto, generating dynamic, structured reports for data analysis documentation.",
       url: "",
       github: "",
+      images: [],
       technologies: ["Python", "Quarto", "Pandas", "Matplotlib", "Jinja2", "ReportLab"],
       features: [
         "Template-based report generation",

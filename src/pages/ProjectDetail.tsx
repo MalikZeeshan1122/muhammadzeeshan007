@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, Github, Calendar, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -99,6 +106,30 @@ const ProjectDetail = () => {
 
           {/* Main Content Grid */}
           <div className="space-y-8">
+            {/* Project Images Gallery */}
+            {project.images && project.images.length > 0 && (
+              <Card className="p-6 border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Media Gallery</h2>
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {project.images.map((image: string, index: number) => (
+                      <CarouselItem key={index}>
+                        <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+                          <img
+                            src={image}
+                            alt={`${project.title} - Image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </Card>
+            )}
+
             {/* Project Description */}
             <Card className="p-6 border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">Project Description</h2>
