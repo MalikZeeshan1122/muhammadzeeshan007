@@ -349,13 +349,11 @@ const Contact = () => {
             <h4 className="text-lg font-medium text-foreground text-center">Subscribe to Newsletter</h4>
             
             <form
-              action={`${profileData?.hero?.substack || 'https://malikzeeshan007.substack.com'}/subscribe`}
-              method="post"
+              action={profileData?.hero?.substack || 'https://substack.com/@malikzeeshan007'}
+              method="get"
               target="_blank"
               className="flex flex-col sm:flex-row gap-2"
             >
-              <input type="hidden" name="simple" value="true" />
-              <input type="hidden" name="next" value={`${profileData?.hero?.substack || 'https://malikzeeshan007.substack.com'}/`} />
               <Input
                 type="email"
                 name="email"
