@@ -62,7 +62,9 @@ const DEFAULT_PROFILE_DATA = {
       points: [
         "Recognized as a Top Performer in the Generative AI Training Cohort-I by Pak Angels and iCodeGuru."
       ]
-    },
+    }
+  ],
+  hackathons: [
     {
       year: "Multiple Events",
       title: "AI Hackathon Participant",

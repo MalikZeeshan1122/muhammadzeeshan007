@@ -2,6 +2,7 @@ import { EditModeProvider } from "@/contexts/EditModeContext";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
+import Hackathons from "@/components/Hackathons";
 import FeaturedTalks from "@/components/FeaturedTalks";
 import Teaching from "@/components/Teaching";
 import FeaturedWriting from "@/components/FeaturedWriting";
@@ -29,6 +30,12 @@ const Index = () => {
           
           <div id="experience">
             <Experience />
+          </div>
+          
+          <hr className="max-w-3xl mx-auto my-8 border-border" />
+          
+          <div id="hackathons">
+            <Hackathons />
           </div>
           
           <hr className="max-w-3xl mx-auto my-8 border-border" />
