@@ -108,26 +108,41 @@ const ProjectDetail = () => {
           <div className="space-y-8">
             {/* Project Images Gallery */}
             {project.images && project.images.length > 0 && (
-              <Card className="p-6 border-border">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Media Gallery</h2>
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {project.images.map((image: string, index: number) => (
-                      <CarouselItem key={index}>
-                        <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
-                          <img
-                            src={image}
-                            alt={`${project.title} - Image ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
-              </Card>
+              <section className="relative -mx-6 sm:mx-0">
+                <Card className="overflow-hidden border-border shadow-lg">
+                  <div className="bg-gradient-to-br from-accent/10 to-accent/5 p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <h2 className="text-3xl font-bold text-foreground">Media Gallery</h2>
+                      <Badge variant="secondary" className="text-sm px-4 py-2">
+                        {project.images.length} {project.images.length === 1 ? 'Image' : 'Images'}
+                      </Badge>
+                    </div>
+                    
+                    <Carousel className="w-full" opts={{ loop: true }}>
+                      <CarouselContent className="-ml-4">
+                        {project.images.map((image: string, index: number) => (
+                          <CarouselItem key={index} className="pl-4">
+                            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-2xl border border-border/50">
+                              <img
+                                src={image}
+                                alt={`${project.title} - Image ${index + 1}`}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/80 to-transparent p-4">
+                                <p className="text-sm text-foreground/80 font-medium">
+                                  {index + 1} / {project.images.length}
+                                </p>
+                              </div>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
+                      <CarouselNext className="right-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
+                    </Carousel>
+                  </div>
+                </Card>
+              </section>
             )}
 
             {/* Project Description */}
