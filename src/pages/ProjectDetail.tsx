@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEditMode } from "@/contexts/EditModeContext";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, Github, Calendar, User } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, User, Edit } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import {
@@ -11,15 +11,30 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import ProjectMediaUpload from "@/components/ProjectMediaUpload";
+import { useState } from "react";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { profileData } = useEditMode();
+  const { profileData, updateProfileData, isEditMode } = useEditMode();
+  const [mediaDialogOpen, setMediaDialogOpen] = useState(false);
   
   const projects = profileData?.petProjects || [];
   const projectIndex = parseInt(projectId || "0");
   const project = projects[projectIndex];
+
+  const handleMediaSave = (media: string[]) => {
+    const updatedProjects = [...projects];
+    updatedProjects[projectIndex] = {
+      ...updatedProjects[projectIndex],
+      images: media
+    };
+    updateProfileData({
+      ...profileData,
+      petProjects: updatedProjects
+    });
+  };
 
   if (!project) {
     return (
@@ -107,20 +122,36 @@ const ProjectDetail = () => {
           {/* Main Content Grid */}
           <div className="space-y-8">
             {/* Project Images Gallery */}
-            {project.images && project.images.length > 0 && (
+            {(project.images && project.images.length > 0) || isEditMode ? (
               <section className="relative -mx-6 sm:mx-0">
                 <Card className="overflow-hidden border-border shadow-lg">
                   <div className="bg-gradient-to-br from-accent/10 to-accent/5 p-8">
                     <div className="flex items-center justify-between mb-6">
                       <h2 className="text-3xl font-bold text-foreground">Media Gallery</h2>
-                      <Badge variant="secondary" className="text-sm px-4 py-2">
-                        {project.images.length} {project.images.length === 1 ? 'Image' : 'Images'}
-                      </Badge>
+                      <div className="flex items-center gap-2">
+                        {project.images && project.images.length > 0 && (
+                          <Badge variant="secondary" className="text-sm px-4 py-2">
+                            {project.images.length} {project.images.length === 1 ? 'Image' : 'Images'}
+                          </Badge>
+                        )}
+                        {isEditMode && (
+                          <Button
+                            onClick={() => setMediaDialogOpen(true)}
+                            variant="outline"
+                            size="sm"
+                            className="gap-2"
+                          >
+                            <Edit className="w-4 h-4" />
+                            Manage Media
+                          </Button>
+                        )}
+                      </div>
                     </div>
                     
-                    <Carousel className="w-full" opts={{ loop: true }}>
-                      <CarouselContent className="-ml-4">
-                        {project.images.map((image: string, index: number) => (
+                    {project.images && project.images.length > 0 ? (
+                      <Carousel className="w-full" opts={{ loop: true }}>
+                        <CarouselContent className="-ml-4">
+                          {project.images.map((image: string, index: number) => (
                           <CarouselItem key={index} className="pl-4">
                             <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted shadow-2xl border border-border/50">
                               <img
@@ -134,16 +165,21 @@ const ProjectDetail = () => {
                                 </p>
                               </div>
                             </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                      <CarouselPrevious className="left-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
-                      <CarouselNext className="right-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
-                    </Carousel>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
+                        <CarouselNext className="right-2 h-10 w-10 bg-background/95 hover:bg-background border-2" />
+                      </Carousel>
+                    ) : isEditMode ? (
+                      <div className="text-center py-12 border-2 border-dashed border-border rounded-lg bg-background/50">
+                        <p className="text-muted-foreground mb-4">No media yet. Click "Manage Media" to add images or videos.</p>
+                      </div>
+                    ) : null}
                   </div>
                 </Card>
               </section>
-            )}
+            ) : null}
 
             {/* Project Description */}
             <Card className="p-6 border-border">
@@ -327,6 +363,14 @@ const ProjectDetail = () => {
           </div>
         </article>
       </main>
+
+      {/* Media Upload Dialog */}
+      <ProjectMediaUpload
+        open={mediaDialogOpen}
+        onOpenChange={setMediaDialogOpen}
+        media={project.images || []}
+        onSave={handleMediaSave}
+      />
     </div>
   );
 };
