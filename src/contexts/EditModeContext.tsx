@@ -48,7 +48,7 @@ const DEFAULT_PROFILE_DATA = {
       ]
     },
     {
-      year: "2023",
+      year: "2024",
       title: "Break with Data Community Member",
       organization: "ML 30-Day Challenge",
       points: [
@@ -56,7 +56,7 @@ const DEFAULT_PROFILE_DATA = {
       ]
     },
     {
-      year: "2023",
+      year: "September 2024",
       title: "LLM Trailblazers Program",
       organization: "Advanced NLP & LLMs",
       points: [
@@ -64,7 +64,7 @@ const DEFAULT_PROFILE_DATA = {
       ]
     },
     {
-      year: "2023",
+      year: "October 2024",
       title: "Generative AI Bootcamp",
       organization: "Pak Angels and iCodeGuru",
       points: [
