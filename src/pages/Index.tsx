@@ -9,6 +9,7 @@ import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import EditModeToggle from "@/components/EditModeToggle";
+import EditModeWelcome from "@/components/EditModeWelcome";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import SectionWrapper from "@/components/SectionWrapper";
@@ -83,6 +84,7 @@ const Index = () => {
 
       <BackToTop />
       <EditModeToggle />
+      <EditModeWelcome />
     </div>
   );
 };
