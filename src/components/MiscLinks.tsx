@@ -28,7 +28,7 @@ const MiscLinks = () => {
               href={link.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-link hover:text-link-hover transition-colors"
+              className="text-link hover:text-link-hover hover:underline transition-colors"
             >
               {link.title}
             </a>

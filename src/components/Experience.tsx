@@ -21,19 +21,23 @@ const Experience = () => {
         <h2 className="text-3xl font-bold text-foreground">Experience</h2>
         <EditButton onClick={() => setEditOpen(true)} />
       </div>
-      <div className="space-y-10">
+      <div className="space-y-8">
         {experiences.map((exp, index) => (
-          <div key={index} className="border-l-2 border-border pl-6 space-y-2">
-            <p className="text-sm text-muted-foreground font-medium">{exp.year}</p>
-            <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
-            <p className="text-muted-foreground">{exp.organization}</p>
-            <ul className="space-y-1 pt-2">
-              {exp.points.map((point, i) => (
-                <li key={i} className="text-foreground leading-relaxed">
-                  {point.startsWith("•") ? point : `• ${point}`}
-                </li>
-              ))}
-            </ul>
+          <div key={index} className="flex gap-6">
+            <div className="text-sm text-muted-foreground font-medium w-24 flex-shrink-0 pt-1">
+              {exp.year}
+            </div>
+            <div className="flex-1 space-y-2">
+              <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
+              <p className="text-muted-foreground">{exp.organization}</p>
+              <ul className="space-y-1 pt-2">
+                {exp.points.map((point, i) => (
+                  <li key={i} className="text-foreground leading-relaxed">
+                    {point.startsWith("•") ? point : `• ${point}`}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>

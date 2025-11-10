@@ -23,13 +23,13 @@ const Publications = () => {
       </div>
       <div className="space-y-4">
         {publications.map((pub, index) => (
-          <div key={index} className="border-l-2 border-border pl-4 space-y-1">
+          <div key={index} className="space-y-1">
             {pub.url ? (
               <a
                 href={pub.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-semibold text-link hover:text-link-hover transition-colors block"
+                className="text-lg font-semibold text-link hover:text-link-hover hover:underline transition-colors block"
               >
                 {pub.title}
               </a>

@@ -18,27 +18,28 @@ const Index = () => {
     <EditModeProvider>
       <div className="min-h-screen bg-background">
         <Hero />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <Experience />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <FeaturedTalks />
         <Teaching />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <FeaturedWriting />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <PetProjects />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <Publications />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <Skills />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <Certifications />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <Education />
-        <Separator className="max-w-3xl mx-auto" />
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
         <MiscLinks />
         
-        <footer className="max-w-3xl mx-auto px-6 py-12 border-t border-border mt-12">
+        <footer className="max-w-3xl mx-auto px-6 py-12 mt-12">
+          <hr className="mb-8 border-border" />
           <p className="text-center text-muted-foreground text-sm">
             © {new Date().getFullYear()} Muhammad Zeeshan. All rights reserved.
           </p>
