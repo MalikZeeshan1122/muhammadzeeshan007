@@ -202,6 +202,22 @@ const HeroEditDialog = ({ open, onOpenChange }: HeroEditDialogProps) => {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="facebook">Facebook URL</Label>
+            <Input
+              id="facebook"
+              value={formData.facebook}
+              onChange={(e) => setFormData({ ...formData, facebook: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="medium">Medium URL</Label>
+            <Input
+              id="medium"
+              value={formData.medium}
+              onChange={(e) => setFormData({ ...formData, medium: e.target.value })}
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="resumeUrl">Resume URL</Label>
             <Input
               id="resumeUrl"
