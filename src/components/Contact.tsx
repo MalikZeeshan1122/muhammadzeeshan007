@@ -220,7 +220,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://twitter.com/yourusername"
+              href="https://x.com/MalikZeesh7398"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
@@ -231,7 +231,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/muhammadzeeshan007/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
@@ -242,7 +242,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://substack.com/@yourusername"
+              href="https://substack.com/@malikzeeshan007"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
@@ -253,7 +253,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://facebook.com/yourusername"
+              href="https://www.facebook.com/profile.php?id=100090496194556"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
@@ -264,7 +264,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://instagram.com/yourusername"
+              href="https://www.instagram.com/malikzeeshan3.1417/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
@@ -275,7 +275,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/MalikZeeshan1122"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
