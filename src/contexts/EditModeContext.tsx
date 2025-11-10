@@ -19,7 +19,13 @@ const DEFAULT_PROFILE_DATA = {
     github: "",
     twitter: "",
     youtube: "",
+    substack: "https://malikzeeshan007.substack.com",
+    facebook: "",
+    instagram: "",
+    medium: "",
     profilePhoto: "",
+    resumeUrl: "",
+    thesisUrl: "",
     summary: "With 3+ years of experience in developing and deploying ML, DL, and NLP models, I specialize in predictive modeling, data visualization, and statistical analysis using TensorFlow, PyTorch, and scikit-learn. Skilled in LLMs, RAG, computer vision, and chatbot frameworks like Langflow, Rasa, Botpress, and LangChain. Proficient in cloud platforms (AWS, Azure, Google Cloud) for scalable deployment. Passionate about solving real-world problems and staying ahead in AI advancements."
   },
   experiences: [
