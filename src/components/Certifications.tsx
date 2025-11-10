@@ -27,7 +27,20 @@ const Certifications = () => {
             key={index} 
             className="flex items-baseline justify-between gap-4 p-3 rounded-lg hover:bg-accent/50 transition-colors"
           >
-            <p className="text-foreground">{cert.name}</p>
+            <div className="flex-1">
+              {cert.url ? (
+                <a 
+                  href={cert.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-primary transition-colors underline decoration-transparent hover:decoration-primary"
+                >
+                  {cert.name}
+                </a>
+              ) : (
+                <p className="text-foreground">{cert.name}</p>
+              )}
+            </div>
             <span className="text-sm text-muted-foreground whitespace-nowrap">{cert.year}</span>
           </div>
         ))}
@@ -41,7 +54,8 @@ const Certifications = () => {
         onSave={handleSave}
         fields={[
           { name: 'name', label: 'Certification Name', type: 'text' },
-          { name: 'year', label: 'Year', type: 'text' }
+          { name: 'year', label: 'Year', type: 'text' },
+          { name: 'url', label: 'Verification URL (optional)', type: 'text' }
         ]}
       />
     </section>

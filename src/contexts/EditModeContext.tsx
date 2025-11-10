@@ -158,14 +158,16 @@ const DEFAULT_PROFILE_DATA = {
     "Critical Thinking", "Passion", "Presentation", "Idea Generation"
   ],
   certifications: [
-    { name: "AWS Certified Solutions Architect – Associate | Coursera", year: "2024" },
-    { name: "Machine Learning Specialization | Stanford University, Coursera", year: "2023" },
-    { name: "Microsoft Certified Azure AI", year: "2023" },
-    { name: "Generative AI: Prompt Engineering | Coursera", year: "2023" },
-    { name: "Google Data Analytics Professional Certificate", year: "2023" },
-    { name: "IBM AI Engineering Professional Certificate", year: "2023" },
-    { name: "Machine Learning in Production | Coursera", year: "2023" },
-    { name: "Prime Minister's Youth Skills (NAVTTC)", year: "2023" }
+    { name: "AI Agents on Arc with USDC Hackathon Certificate", year: "Nov 2025", url: "https://lablab.ai/event/ai-agents-on-arc-with-usdc-hackathon/certificate/cmht324q9002ua60sysmld91t" },
+    { name: "Global AI Hackathon - BrandAI: The Trust Layer for AI-Generated Ads", year: "Nov 2025", url: "https://hack-nation.com/certificate/3ae0d69c-ab28-485f-b0af-abe3b2bbf979" },
+    { name: "AWS Certified Solutions Architect – Associate | Coursera", year: "2024", url: "" },
+    { name: "Machine Learning Specialization | Stanford University, Coursera", year: "2023", url: "" },
+    { name: "Microsoft Certified Azure AI", year: "2023", url: "" },
+    { name: "Generative AI: Prompt Engineering | Coursera", year: "2023", url: "" },
+    { name: "Google Data Analytics Professional Certificate", year: "2023", url: "" },
+    { name: "IBM AI Engineering Professional Certificate", year: "2023", url: "" },
+    { name: "Machine Learning in Production | Coursera", year: "2023", url: "" },
+    { name: "Prime Minister's Youth Skills (NAVTTC)", year: "2023", url: "" }
   ],
   education: [
     {
