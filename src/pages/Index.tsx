@@ -23,6 +23,12 @@ const Index = () => {
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
+        <div id="skills">
+          <Skills />
+        </div>
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
         <div id="experience">
           <Experience />
         </div>
@@ -37,12 +43,6 @@ const Index = () => {
         
         <div id="projects">
           <PetProjects />
-        </div>
-        
-        <hr className="max-w-3xl mx-auto my-8 border-border" />
-        
-        <div id="skills">
-          <Skills />
         </div>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
