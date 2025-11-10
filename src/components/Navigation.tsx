@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import { Menu, X, FileText, GraduationCap } from "lucide-react";
+import { Menu, X, FileText, GraduationCap, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEditMode } from "@/contexts/EditModeContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const { profileData } = useEditMode();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +60,6 @@ const Navigation = () => {
     { name: "Skills", id: "skills" },
     { name: "Experience", id: "experience" },
     { name: "Hackathons", id: "hackathons" },
-    { name: "Projects", id: "projects" },
     { name: "Certifications", id: "certifications" },
     { name: "Papers", id: "papers" },
     { name: "Contact", id: "contact" },
@@ -101,6 +103,22 @@ const Navigation = () => {
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-1/2" />
               </button>
             ))}
+            
+            <button
+              onClick={() => navigate("/projects")}
+              className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 whitespace-nowrap group ${
+                location.pathname === "/projects" || location.pathname.startsWith("/project/")
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground hover:text-primary hover:bg-accent/50"
+              }`}
+            >
+              <FolderOpen className="w-4 h-4 inline mr-1" />
+              Projects
+              {(location.pathname === "/projects" || location.pathname.startsWith("/project/")) && (
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full animate-scale-in" />
+              )}
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-1/2" />
+            </button>
             
             {profileData?.hero?.resumeUrl && (
               <a
@@ -162,6 +180,21 @@ const Navigation = () => {
                 {link.name}
               </button>
             ))}
+            
+            <button
+              onClick={() => {
+                navigate("/projects");
+                setIsOpen(false);
+              }}
+              className={`flex items-center gap-2 w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 ${
+                location.pathname === "/projects" || location.pathname.startsWith("/project/")
+                  ? "text-primary bg-primary/10 translate-x-1"
+                  : "text-foreground hover:text-primary hover:bg-accent/50 hover:translate-x-1"
+              }`}
+            >
+              <FolderOpen className="w-4 h-4" />
+              Projects
+            </button>
             
             {profileData?.hero?.resumeUrl && (
               <a

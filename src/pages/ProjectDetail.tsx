@@ -41,9 +41,9 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-foreground mb-4">Project Not Found</h1>
-          <Button onClick={() => navigate("/")}>
+          <Button onClick={() => navigate("/projects")}>
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
+            Back to Projects
           </Button>
         </div>
       </div>
@@ -58,11 +58,11 @@ const ProjectDetail = () => {
           <div className="flex items-center justify-between h-16">
             <Button 
               variant="ghost" 
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/projects")}
               className="flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Portfolio
+              Back to Projects
             </Button>
             <span className="text-sm text-muted-foreground font-medium">
               {profileData?.hero?.name || "Muhammad Zeeshan"}
@@ -193,7 +193,7 @@ const ProjectDetail = () => {
           {/* Navigation Footer */}
           <div className="mt-16 pt-8 border-t border-border flex justify-between items-center">
             <Button 
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/projects")}
               variant="outline"
               size="lg"
               className="gap-2"

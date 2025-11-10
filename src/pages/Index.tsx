@@ -13,8 +13,13 @@ import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import SectionWrapper from "@/components/SectionWrapper";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
@@ -46,7 +51,20 @@ const Index = () => {
         <hr className="max-w-3xl mx-auto my-8 border-border" />
         
         <SectionWrapper id="projects">
-          <PetProjects />
+          <section className="max-w-3xl mx-auto px-6 py-12 text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Projects</h2>
+            <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+              Explore my portfolio of projects showcasing various technologies and solutions.
+            </p>
+            <Button
+              onClick={() => navigate("/projects")}
+              size="lg"
+              className="group"
+            >
+              View All Projects
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </section>
         </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />
