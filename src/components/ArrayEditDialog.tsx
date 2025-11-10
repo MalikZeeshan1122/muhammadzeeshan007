@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2, Image as ImageIcon } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon, Video } from "lucide-react";
 import ProjectMediaUpload from "./ProjectMediaUpload";
+import { Card } from "@/components/ui/card";
 
 interface ArrayEditDialogProps {
   open: boolean;
@@ -72,6 +73,10 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
     setMediaDialogOpen(true);
   };
 
+  const isVideo = (url: string) => {
+    return url.match(/\.(mp4|webm|ogg|mov)$/i) || url.includes('youtube.com') || url.includes('youtu.be');
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -108,7 +113,7 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
                       placeholder="Enter one item per line"
                     />
                   ) : field.type === 'media' ? (
-                    <div>
+                    <div className="space-y-3">
                       <Button
                         type="button"
                         variant="outline"
@@ -118,6 +123,40 @@ const ArrayEditDialog = ({ open, onOpenChange, title, data, onSave, fields }: Ar
                         <ImageIcon className="w-4 h-4 mr-2" />
                         Manage Media ({Array.isArray(item[field.name]) ? item[field.name].length : 0} items)
                       </Button>
+                      
+                      {/* Media Gallery Preview */}
+                      {Array.isArray(item[field.name]) && item[field.name].length > 0 ? (
+                        <div className="grid grid-cols-3 gap-2">
+                          {item[field.name].slice(0, 6).map((mediaUrl: string, mediaIndex: number) => (
+                            <Card key={mediaIndex} className="relative aspect-video bg-muted overflow-hidden group">
+                              {isVideo(mediaUrl) ? (
+                                <div className="w-full h-full flex items-center justify-center">
+                                  <Video className="w-8 h-8 text-muted-foreground" />
+                                </div>
+                              ) : (
+                                <img
+                                  src={mediaUrl}
+                                  alt={`Media ${mediaIndex + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                              )}
+                              <div className="absolute bottom-1 right-1 bg-background/80 px-1.5 py-0.5 rounded text-xs">
+                                {mediaIndex + 1}
+                              </div>
+                            </Card>
+                          ))}
+                          {item[field.name].length > 6 && (
+                            <Card className="aspect-video bg-muted flex items-center justify-center">
+                              <p className="text-xs text-muted-foreground">+{item[field.name].length - 6} more</p>
+                            </Card>
+                          )}
+                        </div>
+                      ) : (
+                        <Card className="p-6 text-center border-2 border-dashed">
+                          <ImageIcon className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                          <p className="text-sm text-muted-foreground">No media yet. Click "Manage Media" to add images or videos.</p>
+                        </Card>
+                      )}
                     </div>
                   ) : (
                     <Input
