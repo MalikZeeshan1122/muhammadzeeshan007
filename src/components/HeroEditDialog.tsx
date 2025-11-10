@@ -106,6 +106,24 @@ const HeroEditDialog = ({ open, onOpenChange }: HeroEditDialogProps) => {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="resumeUrl">Resume URL</Label>
+            <Input
+              id="resumeUrl"
+              value={formData.resumeUrl}
+              onChange={(e) => setFormData({ ...formData, resumeUrl: e.target.value })}
+              placeholder="https://... (link to your resume)"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="thesisUrl">Thesis URL</Label>
+            <Input
+              id="thesisUrl"
+              value={formData.thesisUrl}
+              onChange={(e) => setFormData({ ...formData, thesisUrl: e.target.value })}
+              placeholder="https://... (link to your thesis)"
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="summary">Summary</Label>
             <Textarea
               id="summary"
