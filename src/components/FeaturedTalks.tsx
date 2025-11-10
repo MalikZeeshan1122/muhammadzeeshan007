@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 const FeaturedTalks = () => {
   const { profileData, updateProfileData } = useEditMode();
   const [editOpen, setEditOpen] = useState(false);
-  const talks = profileData.featuredTalks;
+  const talks = profileData.featuredTalks || [];
 
   const handleSave = (data: any[]) => {
     updateProfileData({
