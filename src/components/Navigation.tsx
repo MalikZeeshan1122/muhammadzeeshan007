@@ -51,7 +51,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <span className="text-xl font-bold text-foreground">
-              {profileData?.hero?.name?.split(' ')[0] || "Portfolio"}
+              {profileData?.hero?.name || "Muhammad Zeehan"}
             </span>
           </div>
 
