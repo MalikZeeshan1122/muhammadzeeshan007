@@ -201,6 +201,59 @@ const Contact = () => {
             </Button>
           </form>
         </Card>
+
+        {/* Newsletter Subscription */}
+        <Card className="p-6 bg-accent/5">
+          <div className="space-y-4">
+            <div className="flex flex-wrap gap-3 items-center justify-center">
+              <a href="https://chipro.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                chipro
+              </a>
+              <a href="https://chiphuyen.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                chiphuyen
+              </a>
+              <a href="https://twitter.com/chiphuyen" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                chiphuyen
+              </a>
+              <a href="https://chipiscrazy.com" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                chipiscrazy
+              </a>
+              <a href="https://twitter.com/huyenchip19" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                huyenchip19
+              </a>
+              <a href="https://github.com/chiphuyen" target="_blank" rel="noopener noreferrer" className="text-link hover:text-link-hover transition-colors">
+                chiphuyen
+              </a>
+            </div>
+
+            <div className="text-center">
+              <a href="mailto:malikzeeshan3.1417@gmail.com" className="text-foreground/70 hover:text-link transition-colors">
+                malikzeeshan3.1417@gmail.com
+              </a>
+            </div>
+
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              toast({
+                title: "Subscribed!",
+                description: "Thank you for subscribing to updates.",
+              });
+            }} className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="hi@[thiswebsite]"
+                required
+                className="flex-1"
+                maxLength={255}
+              />
+              <Button type="submit">Subscribe</Button>
+            </form>
+
+            <p className="text-xs text-muted-foreground text-center">
+              By subscribing you agree to receive updates and newsletters.
+            </p>
+          </div>
+        </Card>
       </div>
     </section>
   );
