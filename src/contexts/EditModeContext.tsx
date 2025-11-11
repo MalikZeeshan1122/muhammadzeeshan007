@@ -333,24 +333,19 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   });
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load data from database on mount if user is authenticated
+  // Load data from database on mount (for all visitors)
   useEffect(() => {
     const loadData = async () => {
-      if (!user) {
-        setIsLoading(false);
-        return;
-      }
-
       try {
+        // Load the first portfolio data (publicly viewable)
         const { data, error } = await supabase
           .from('portfolio_data')
           .select('data')
-          .eq('user_id', user.id)
+          .limit(1)
           .maybeSingle();
 
         if (error) {
           console.error('Error loading portfolio data:', error);
-          toast.error('Failed to load portfolio data');
         } else if (data) {
           setProfileData(data.data);
         }
@@ -362,7 +357,7 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     };
 
     loadData();
-  }, [user]);
+  }, []);
 
   // Save to database whenever profileData changes (if user is authenticated)
   useEffect(() => {
@@ -391,9 +386,6 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     };
 
     saveData();
-    
-    // Also save to localStorage as backup
-    localStorage.setItem('profileData', JSON.stringify(profileData));
   }, [profileData, user, isLoading]);
 
   const toggleEditMode = () => {
