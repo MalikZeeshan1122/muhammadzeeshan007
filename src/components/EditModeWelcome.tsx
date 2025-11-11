@@ -9,12 +9,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Edit3, MousePointerClick, Save, Keyboard } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 
 const EditModeWelcome = () => {
   const [open, setOpen] = useState(false);
-  const [dontShowAgain, setDontShowAgain] = useState(false);
 
   useEffect(() => {
     // Check if user has seen the welcome dialog
@@ -27,9 +24,7 @@ const EditModeWelcome = () => {
   }, []);
 
   const handleClose = () => {
-    if (dontShowAgain) {
-      localStorage.setItem("edit-mode-welcome-seen", "true");
-    }
+    localStorage.setItem("edit-mode-welcome-seen", "true");
     setOpen(false);
   };
 
@@ -96,20 +91,7 @@ const EditModeWelcome = () => {
           </div>
         </div>
 
-        <DialogFooter className="flex-col sm:flex-col gap-3">
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="dont-show"
-              checked={dontShowAgain}
-              onCheckedChange={(checked) => setDontShowAgain(checked as boolean)}
-            />
-            <Label
-              htmlFor="dont-show"
-              className="text-sm font-normal cursor-pointer"
-            >
-              Don't show this again
-            </Label>
-          </div>
+        <DialogFooter>
           <Button onClick={handleClose} className="w-full">
             Got it!
           </Button>
