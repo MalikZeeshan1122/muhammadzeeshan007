@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from './AuthContext';
+import { toast } from 'sonner';
 
 interface EditModeContextType {
   isEditMode: boolean;
@@ -322,15 +325,76 @@ const DEFAULT_PROFILE_DATA = {
 };
 
 export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAuth();
   const [isEditMode, setIsEditMode] = useState(false);
   const [profileData, setProfileData] = useState(() => {
     const saved = localStorage.getItem('profileData');
     return saved ? JSON.parse(saved) : DEFAULT_PROFILE_DATA;
   });
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Load data from database on mount if user is authenticated
   useEffect(() => {
+    const loadData = async () => {
+      if (!user) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('portfolio_data')
+          .select('data')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error loading portfolio data:', error);
+          toast.error('Failed to load portfolio data');
+        } else if (data) {
+          setProfileData(data.data);
+        }
+      } catch (error) {
+        console.error('Error loading portfolio data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, [user]);
+
+  // Save to database whenever profileData changes (if user is authenticated)
+  useEffect(() => {
+    const saveData = async () => {
+      if (!user || isLoading) return;
+
+      try {
+        const { error } = await supabase
+          .from('portfolio_data')
+          .upsert({
+            user_id: user.id,
+            data: profileData
+          }, {
+            onConflict: 'user_id'
+          });
+
+        if (error) {
+          console.error('Error saving portfolio data:', error);
+          toast.error('Failed to save changes');
+        } else {
+          toast.success('Changes saved automatically');
+        }
+      } catch (error) {
+        console.error('Error saving portfolio data:', error);
+      }
+    };
+
+    saveData();
+    
+    // Also save to localStorage as backup
     localStorage.setItem('profileData', JSON.stringify(profileData));
-  }, [profileData]);
+  }, [profileData, user, isLoading]);
 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
