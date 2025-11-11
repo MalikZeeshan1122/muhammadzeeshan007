@@ -1,8 +1,10 @@
 import { useEffect } from "react";
-import { Edit3, Save, HelpCircle } from "lucide-react";
+import { Edit3, Save, HelpCircle, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEditMode } from "@/contexts/EditModeContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
@@ -11,6 +13,11 @@ import {
 
 const EditModeToggle = () => {
   const { isEditMode, toggleEditMode } = useEditMode();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  // Only show if user is authenticated
+  if (!user) return null;
 
   const handleToggle = () => {
     toggleEditMode();
@@ -31,6 +38,13 @@ const EditModeToggle = () => {
       description: "1. Enable edit mode\n2. Click edit buttons on sections\n3. Make your changes\n4. Click Save & Exit\n\nPress 'E' for quick toggle",
       duration: 6000,
     });
+  };
+
+  const handleSignOut = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await signOut();
+    toast.success("Signed out successfully");
+    navigate('/');
   };
 
   // Keyboard shortcut: Press 'E' to toggle edit mode
@@ -54,6 +68,23 @@ const EditModeToggle = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
+      {/* Sign Out Button */}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            onClick={handleSignOut}
+            size="icon"
+            variant="outline"
+            className="rounded-full shadow-lg bg-background/95 backdrop-blur-sm self-end"
+          >
+            <LogOut className="w-5 h-5" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="left">
+          <p>Sign out</p>
+        </TooltipContent>
+      </Tooltip>
+
       {/* Help Button */}
       <Tooltip>
         <TooltipTrigger asChild>

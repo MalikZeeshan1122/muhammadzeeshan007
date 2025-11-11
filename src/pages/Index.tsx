@@ -10,6 +10,7 @@ import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import EditModeToggle from "@/components/EditModeToggle";
 import EditModeWelcome from "@/components/EditModeWelcome";
+import AdminAccessShortcut from "@/components/AdminAccessShortcut";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import SectionWrapper from "@/components/SectionWrapper";
@@ -85,6 +86,7 @@ const Index = () => {
       <BackToTop />
       <EditModeToggle />
       <EditModeWelcome />
+      <AdminAccessShortcut />
     </div>
   );
 };

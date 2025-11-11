@@ -7,6 +7,7 @@ import { EditModeProvider } from "@/contexts/EditModeContext";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
         <EditModeProvider>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/admin" element={<AdminLogin />} />
             <Route path="/project/:projectId" element={<ProjectDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

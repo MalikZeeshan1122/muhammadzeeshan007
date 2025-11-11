@@ -1,6 +1,7 @@
 import { Edit2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEditMode } from "@/contexts/EditModeContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface EditButtonProps {
   onClick: () => void;
@@ -8,8 +9,10 @@ interface EditButtonProps {
 
 const EditButton = ({ onClick }: EditButtonProps) => {
   const { isEditMode } = useEditMode();
+  const { user } = useAuth();
 
-  if (!isEditMode) return null;
+  // Only show if user is authenticated and edit mode is enabled
+  if (!user || !isEditMode) return null;
 
   return (
     <Button
