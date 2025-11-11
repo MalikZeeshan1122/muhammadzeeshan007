@@ -12,7 +12,9 @@ const EditButton = ({ onClick }: EditButtonProps) => {
   const { user } = useAuth();
 
   // Only show if user is authenticated and edit mode is enabled
-  if (!user || !isEditMode) return null;
+  if (!user || !isEditMode) {
+    return null;
+  }
 
   return (
     <Button

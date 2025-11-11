@@ -16,9 +16,6 @@ const EditModeToggle = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
-  // Only show if user is authenticated
-  if (!user) return null;
-
   const handleToggle = () => {
     toggleEditMode();
     if (!isEditMode) {
@@ -65,6 +62,9 @@ const EditModeToggle = () => {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [isEditMode, toggleEditMode]);
+
+  // Only show if user is authenticated
+  if (!user) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
