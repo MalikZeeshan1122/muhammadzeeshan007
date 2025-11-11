@@ -9,11 +9,16 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Edit3, MousePointerClick, Save, Keyboard } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const EditModeWelcome = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
+    // Only show to authenticated users
+    if (!user) return;
+    
     // Check if user has seen the welcome dialog
     const hasSeenWelcome = localStorage.getItem("edit-mode-welcome-seen");
     if (!hasSeenWelcome) {
@@ -21,12 +26,15 @@ const EditModeWelcome = () => {
       const timer = setTimeout(() => setOpen(true), 1000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [user]);
 
   const handleClose = () => {
     localStorage.setItem("edit-mode-welcome-seen", "true");
     setOpen(false);
   };
+
+  // Don't show to non-authenticated visitors
+  if (!user) return null;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
