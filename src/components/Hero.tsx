@@ -19,7 +19,10 @@ const Hero = () => {
         {/* Avatar with floating and glowing animation */}
         <div className="flex justify-center mb-8 animate-fade-in">
           <div className="relative group">
-            <Avatar className="h-40 w-40 ring-4 ring-primary/10 shadow-xl transition-all duration-500 hover:ring-8 hover:ring-primary/20 hover:scale-110 animate-scale-in animate-glow-pulse">
+            {/* Outer decorative circle */}
+            <div className="absolute -inset-4 rounded-full border-2 border-primary/20 opacity-60" />
+            
+            <Avatar className="h-40 w-40 ring-4 ring-primary/10 shadow-xl transition-all duration-500 hover:ring-8 hover:ring-primary/20 hover:scale-110 animate-scale-in animate-glow-pulse relative z-10">
               <AvatarImage src={hero.profilePhoto} alt={hero.name} />
               <AvatarFallback className="text-4xl bg-gradient-to-br from-primary/10 to-accent/20 text-foreground font-bold">
                 {hero.name?.split(' ').map(n => n[0]).join('') || 'MZ'}
