@@ -337,10 +337,11 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Load the first portfolio data (publicly viewable)
+        // Load public portfolio data
         const { data, error } = await supabase
           .from('portfolio_data')
           .select('data')
+          .eq('is_public', true)
           .limit(1)
           .maybeSingle();
 
@@ -369,7 +370,8 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           .from('portfolio_data')
           .upsert({
             user_id: user.id,
-            data: profileData
+            data: profileData,
+            is_public: true
           }, {
             onConflict: 'user_id'
           });
