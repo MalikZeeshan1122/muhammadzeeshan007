@@ -16,10 +16,10 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse opacity-50" />
       
       <div className="relative z-10">
-        {/* Avatar with floating animation */}
+        {/* Avatar with floating and glowing animation */}
         <div className="flex justify-center mb-8 animate-fade-in">
           <div className="relative group">
-            <Avatar className="h-40 w-40 ring-4 ring-primary/10 shadow-xl transition-all duration-500 hover:ring-8 hover:ring-primary/20 hover:scale-110 animate-scale-in">
+            <Avatar className="h-40 w-40 ring-4 ring-primary/10 shadow-xl transition-all duration-500 hover:ring-8 hover:ring-primary/20 hover:scale-110 animate-scale-in animate-glow-pulse">
               <AvatarImage src={hero.profilePhoto} alt={hero.name} />
               <AvatarFallback className="text-4xl bg-gradient-to-br from-primary/10 to-accent/20 text-foreground font-bold">
                 {hero.name?.split(' ').map(n => n[0]).join('') || 'MZ'}
@@ -27,6 +27,8 @@ const Hero = () => {
             </Avatar>
             {/* Animated ring effect */}
             <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-ping opacity-0 group-hover:opacity-75" />
+            {/* Additional glow layers */}
+            <div className="absolute inset-0 rounded-full bg-primary/5 blur-xl animate-pulse" />
           </div>
         </div>
         
