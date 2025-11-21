@@ -286,6 +286,8 @@ const DEFAULT_PROFILE_DATA = {
   ],
   publications: [],
   miscLinks: [],
+  testimonials: [],
+  specialEvents: [],
   technicalSkills: [
     "Python", "SQL", "Tableau", "Pandas", "Numpy", "SciPy", "Seaborn", "Matplotlib", 
     "TensorFlow", "Deep Learning", "LLM", "NLP", "Linear Regression", "Logistic Regression", 

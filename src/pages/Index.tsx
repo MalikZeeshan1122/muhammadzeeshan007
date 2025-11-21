@@ -8,6 +8,8 @@ import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
+import Testimonials from "@/components/Testimonials";
+import SpecialEvents from "@/components/SpecialEvents";
 import EditModeToggle from "@/components/EditModeToggle";
 import EditModeWelcome from "@/components/EditModeWelcome";
 import AdminAccessShortcut from "@/components/AdminAccessShortcut";
@@ -67,6 +69,18 @@ const Index = () => {
         
         <SectionWrapper id="papers">
           <Publications />
+        </SectionWrapper>
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <SectionWrapper id="testimonials">
+          <Testimonials />
+        </SectionWrapper>
+        
+        <hr className="max-w-3xl mx-auto my-8 border-border" />
+        
+        <SectionWrapper id="events">
+          <SpecialEvents />
         </SectionWrapper>
         
         <hr className="max-w-3xl mx-auto my-8 border-border" />

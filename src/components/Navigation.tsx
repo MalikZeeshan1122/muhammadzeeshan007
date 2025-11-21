@@ -14,7 +14,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 20);
       
       // Track active section
-      const sections = ["about", "skills", "experience", "hackathons", "projects", "certifications", "papers", "contact"];
+      const sections = ["about", "skills", "experience", "hackathons", "projects", "certifications", "papers", "testimonials", "events", "contact"];
       const scrollPosition = window.scrollY + 100;
       
       for (const sectionId of sections) {
@@ -60,6 +60,8 @@ const Navigation = () => {
     { name: "Projects", id: "projects" },
     { name: "Certifications", id: "certifications" },
     { name: "Papers", id: "papers" },
+    { name: "Testimonials", id: "testimonials" },
+    { name: "Events", id: "events" },
     { name: "Contact", id: "contact" },
   ];
 
