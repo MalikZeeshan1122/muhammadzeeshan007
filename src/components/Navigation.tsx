@@ -95,10 +95,13 @@ const Navigation = () => {
                 }`}
               >
                 {link.name}
-                {activeSection === link.id && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full animate-scale-in" />
-                )}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-1/2" />
+                <span 
+                  className={`absolute bottom-0 left-0 right-0 mx-auto h-0.5 bg-primary rounded-full transition-all duration-300 ${
+                    activeSection === link.id 
+                      ? "w-1/2" 
+                      : "w-0 group-hover:w-1/2"
+                  }`} 
+                />
               </button>
             ))}
             
